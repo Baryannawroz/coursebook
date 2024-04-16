@@ -6,6 +6,8 @@ use App\Models\Department;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDepartmentRequest;
 use App\Http\Requests\UpdateDepartmentRequest;
+use App\Models\Faculty;
+use App\Policies\DepartmentPolicy;
 
 class DepartmentController extends Controller
 {
@@ -14,7 +16,10 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        $departments = Department::with('faculty')->get();
+
+
+        return view('departments.department_index', compact('departments'));
     }
 
     /**
@@ -22,7 +27,9 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        $faculties = Faculty::all();
+
+        return view('departments.department_create', compact('faculties'));
     }
 
     /**
@@ -30,7 +37,12 @@ class DepartmentController extends Controller
      */
     public function store(StoreDepartmentRequest $request)
     {
-        //
+        $department = new Department();
+        $department->name = $request['name'];
+        $department->code = $request['code'];
+        $department->faculty_id = $request['faculty_id'];
+        $department->save();
+        return redirect()->route('departments');
     }
 
     /**
@@ -46,7 +58,10 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        //
+
+
+        $faculties = Faculty::all();
+        return view('departments.department_edit', compact('faculties', 'department'));
     }
 
     /**
@@ -54,7 +69,11 @@ class DepartmentController extends Controller
      */
     public function update(UpdateDepartmentRequest $request, Department $department)
     {
-        //
+       $department->name= $request['name'];
+       $department->code=$request['code'];
+       $department->faculty_id=$request['faculty_id'];
+       $department->update();
+       return  redirect()->route("departments");
     }
 
     /**

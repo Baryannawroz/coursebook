@@ -11,7 +11,7 @@ class StoreStageRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreStageRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+
+            'name' => ['required', 'min:3', 'unique:stages'],
+            'code' => ['required'],
+            'department_id' => ['required'],
         ];
     }
 }

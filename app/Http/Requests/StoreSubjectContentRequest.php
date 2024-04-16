@@ -11,7 +11,7 @@ class StoreSubjectContentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreSubjectContentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'material_covered'=> 'required|unique:subject_contents,material_covered',
+            'subject_id'=>'required'
         ];
     }
 }

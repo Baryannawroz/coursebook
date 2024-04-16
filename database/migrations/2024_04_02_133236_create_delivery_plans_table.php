@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->timestamps();
             $table->foreign('material_covered_id')->references('id')->on('subject_contents')->onDelete('cascade');
-            $table->foreign('modelinfo_id')->references('id')->on('model_infos')->onDelete('cascade');
+            $table->foreign('modelinfo_id')->references('id')->on('modelinfos')->onDelete('cascade');
         });
     }
 

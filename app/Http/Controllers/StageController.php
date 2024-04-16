@@ -6,6 +6,7 @@ use App\Models\Stage;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStageRequest;
 use App\Http\Requests\UpdateStageRequest;
+use App\Models\Department;
 
 class StageController extends Controller
 {
@@ -14,7 +15,8 @@ class StageController extends Controller
      */
     public function index()
     {
-        //
+        $stages = Stage::with('department.faculty')->get();
+        return view('stages.stage_index', compact('stages'));
     }
 
     /**
@@ -22,7 +24,8 @@ class StageController extends Controller
      */
     public function create()
     {
-        //
+        $departments = Department::all();
+        return view('stages.stage_create', compact('departments'));
     }
 
     /**
@@ -30,7 +33,14 @@ class StageController extends Controller
      */
     public function store(StoreStageRequest $request)
     {
-        //
+
+        $stage = new Stage();
+        $stage->name = $request->input('name');
+        $stage->code = $request->input('code');
+        $stage->department_id = $request->input('department_id');
+        $stage->save();
+
+        return redirect()->route('stages'); // Ensure the correct route name
     }
 
     /**
@@ -46,7 +56,9 @@ class StageController extends Controller
      */
     public function edit(Stage $stage)
     {
-        //
+
+        $departments = Department::all();
+        return view('stages.stage_edit', compact('departments', 'stage'));
     }
 
     /**
@@ -54,7 +66,12 @@ class StageController extends Controller
      */
     public function update(UpdateStageRequest $request, Stage $stage)
     {
-        //
+
+        $stage->name = $request->input('name');
+        $stage->code = $request->input('code');
+        $stage->department_id = $request->input('department_id');
+        $stage->update();
+        return redirect()->route('stages');
     }
 
     /**

@@ -6,6 +6,7 @@ use App\Models\SubjectContent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSubjectContentRequest;
 use App\Http\Requests\UpdateSubjectContentRequest;
+use App\Models\Subject;
 
 class SubjectContentController extends Controller
 {
@@ -14,7 +15,8 @@ class SubjectContentController extends Controller
      */
     public function index()
     {
-        //
+        $contents = SubjectContent::with('subject')->get();
+        return view('contents.content_index', compact('contents'));
     }
 
     /**
@@ -22,7 +24,8 @@ class SubjectContentController extends Controller
      */
     public function create()
     {
-        //
+        $subjects = Subject::all();
+        return view('contents.content_create', compact('subjects'));
     }
 
     /**
@@ -30,7 +33,9 @@ class SubjectContentController extends Controller
      */
     public function store(StoreSubjectContentRequest $request)
     {
-        //
+        $content = new  SubjectContent($request->validated());
+        $content->save();
+        return redirect()->route('contents');
     }
 
     /**
@@ -46,7 +51,8 @@ class SubjectContentController extends Controller
      */
     public function edit(SubjectContent $subjectContent)
     {
-        //
+        $subjects = Subject::all();
+        return view("contents.content_edit",  compact('subjects', 'subjectContent'));
     }
 
     /**
@@ -54,7 +60,12 @@ class SubjectContentController extends Controller
      */
     public function update(UpdateSubjectContentRequest $request, SubjectContent $subjectContent)
     {
-        //
+
+        // dd($request);
+        $subjectContent->material_covered = $request['material_covered'];
+        $subjectContent->subject_id = $request['subject_id'];
+        $subjectContent->update();
+        return redirect()->route('contents');
     }
 
     /**

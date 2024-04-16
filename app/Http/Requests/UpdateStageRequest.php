@@ -11,7 +11,7 @@ class UpdateStageRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return True;
     }
 
     /**
@@ -21,8 +21,13 @@ class UpdateStageRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->route('stage.update'); // Assuming the route parameter name is 'faculty'
+
         return [
-            //
+            'name' => ['required', 'min:3', 'unique:stages,name,' . $id],
+            'code' => ['required'],
+            'department_id' => ['required']
+
         ];
     }
 }

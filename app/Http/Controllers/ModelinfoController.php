@@ -14,7 +14,8 @@ class ModelinfoController extends Controller
      */
     public function index()
     {
-        //
+        $modelinfos = Modelinfo::get('id', 'name');
+        return view('models.modleinfo_index');
     }
 
     /**

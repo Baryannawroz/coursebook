@@ -11,7 +11,7 @@ class StoreSubjectRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return True;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreSubjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+        'name'=> ['required', 'min:3', 'unique:subjects,name'],
+        'code' =>['required','max:10']
         ];
     }
 }

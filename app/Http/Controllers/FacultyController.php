@@ -6,6 +6,8 @@ use App\Models\Faculty;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFacultyRequest;
 use App\Http\Requests\UpdateFacultyRequest;
+use GuzzleHttp\Promise\Create;
+use Illuminate\Http\Request;
 
 class FacultyController extends Controller
 {
@@ -14,7 +16,9 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        //
+        $faculties  = Faculty::all();
+
+        return View("faculties.faculty_index", compact('faculties'));
     }
 
     /**
@@ -22,7 +26,7 @@ class FacultyController extends Controller
      */
     public function create()
     {
-        //
+        return view("faculties.faculty_create");
     }
 
     /**
@@ -30,15 +34,23 @@ class FacultyController extends Controller
      */
     public function store(StoreFacultyRequest $request)
     {
-        //
+        $faculty = new Faculty();
+        $faculty->name = $request['name'];
+        $faculty->code = $request['code'];
+        $faculty->save();
+        return redirect()->route('faculties');
     }
+
 
     /**
      * Display the specified resource.
      */
-    public function show(Faculty $faculty)
+    public function show(Request $faculty)
     {
-        //
+        $content = $faculty->input('content');
+
+        // Do whatever you need to do with the submitted data
+        dd($content);
     }
 
     /**
@@ -46,7 +58,8 @@ class FacultyController extends Controller
      */
     public function edit(Faculty $faculty)
     {
-        //
+
+        return view("faculties.faculty_edit", compact('faculty'));
     }
 
     /**
@@ -54,7 +67,13 @@ class FacultyController extends Controller
      */
     public function update(UpdateFacultyRequest $request, Faculty $faculty)
     {
-        //
+
+        $faculty->update([
+            'name' => $request->name,
+            'code' => $request->code,
+        ]);
+        return redirect()->route('faculties');
+
     }
 
     /**

@@ -11,7 +11,7 @@ class UpdateSubjectRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return True;
     }
 
     /**
@@ -21,8 +21,12 @@ class UpdateSubjectRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->route('subject')->id;
+    
+
         return [
-            //
+            'name' => ['required', 'min:3', 'unique:subjects,name,' . $id],
+            'code' => ['required'],
         ];
     }
 }

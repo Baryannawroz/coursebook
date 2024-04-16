@@ -11,7 +11,7 @@ class UpdateSubjectContentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class UpdateSubjectContentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'material_covered' => ['required' ],
+            'subject_id'=>'required'
         ];
     }
 }

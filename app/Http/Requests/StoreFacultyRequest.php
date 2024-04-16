@@ -11,7 +11,7 @@ class StoreFacultyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true; // Adjust authorization logic as needed
     }
 
     /**
@@ -21,8 +21,11 @@ class StoreFacultyRequest extends FormRequest
      */
     public function rules(): array
     {
+        $id = $this->route('faculty.update'); // Assuming the route parameter name is 'faculty'
+
         return [
-            //
+            'name' => ['required', 'min:3', 'unique:faculties,name,' . $id],
+            'code' => ['required']
         ];
     }
 }
