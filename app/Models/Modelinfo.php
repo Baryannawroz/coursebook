@@ -10,4 +10,10 @@ class Modelinfo extends Model
     use HasFactory;
     protected $guarded = [];
 
+    public function subject(){
+        return $this->belongsTo(Subject::class);
+    }
+    public function stage(){
+        return $this->belongsTo(Stage::class);
+    }
 }

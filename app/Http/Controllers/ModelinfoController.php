@@ -6,6 +6,8 @@ use App\Models\Modelinfo;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreModelinfoRequest;
 use App\Http\Requests\UpdateModelinfoRequest;
+use App\Models\Stage;
+use App\Models\Subject;
 
 class ModelinfoController extends Controller
 {
@@ -14,8 +16,9 @@ class ModelinfoController extends Controller
      */
     public function index()
     {
-        $modelinfos = Modelinfo::get('id', 'name');
-        return view('models.modleinfo_index');
+        $modelinfos = Modelinfo::with('subject', 'stage.department')->get();
+
+        return view('models.modelinfo_index',compact('modelinfos'));
     }
 
     /**
@@ -23,7 +26,9 @@ class ModelinfoController extends Controller
      */
     public function create()
     {
-        //
+        $subjects=Subject::all();
+        $stages=Stage::with('department')->get();
+        return view('models.modelinfo_create',compact('subjects','stages'));
     }
 
     /**
@@ -31,7 +36,12 @@ class ModelinfoController extends Controller
      */
     public function store(StoreModelinfoRequest $request)
     {
-        //
+        $validatedData = $request->validated();
+
+
+        Modelinfo::create($validatedData);
+       return redirect()->route("models");
+
     }
 
     /**
@@ -39,7 +49,7 @@ class ModelinfoController extends Controller
      */
     public function show(Modelinfo $modelinfo)
     {
-        //
+        return view('models.modelinfo_show')->with('model',$modelinfo);
     }
 
     /**
@@ -47,7 +57,10 @@ class ModelinfoController extends Controller
      */
     public function edit(Modelinfo $modelinfo)
     {
-        //
+
+        $subjects = Subject::all();
+        $stages = Stage::with('department')->get();
+        return view('models.modelinfo_edit',compact('subjects','stages'))->with('model',$modelinfo);
     }
 
     /**
@@ -55,7 +68,11 @@ class ModelinfoController extends Controller
      */
     public function update(UpdateModelinfoRequest $request, Modelinfo $modelinfo)
     {
-        //
+        $validatedData = $request->validated();
+
+        // Update the Modelinfo instance with the validated data
+        $modelinfo->update($validatedData);
+      return  redirect()->route('models');
     }
 
     /**

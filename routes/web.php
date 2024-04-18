@@ -58,6 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/model/store', [ModelinfoController::class, 'store'])->name('model.store');
     Route::get('/model/{modelinfo}/edit', [ModelinfoController::class, 'edit'])->name('model.edit');
     Route::post('/model/{modelinfo}/update', [ModelinfoController::class, 'update'])->name('model.update');
+    Route::get('/model/{modelinfo}/show', [ModelinfoController::class, 'show'])->name('model.show');
 
 
 
@@ -68,6 +69,7 @@ Route::get('/test', function () {
 
 return view('test');
 });
+
 
 use App\Http\Controllers\FormController;
 

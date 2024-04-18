@@ -14,29 +14,29 @@ return new class extends Migration
         Schema::create('modelinfos', function (Blueprint $table) {
             $table->id();
             $table->string('module_title');
-            $table->string('module_type');
+            $table->integer('module_type');
             $table->string('module_code');
-            $table->integer('ects_credits');
+            $table->integer('credits');
             $table->string('module_level');
-            $table->string('semester_of_delivery');
+            $table->integer('semester_of_delivery');
             $table->string('administering_department');
             $table->string('faculty');
             $table->string('module_leader');
-            $table->string('ml_email');
-            $table->string('module_leader_acad_title');
+            $table->string('module_leader_email');
+            $table->string('module_leader_academic_title');
             $table->string('module_leader_qualification');
-            $table->string('module_tutor');
-            $table->string('mt_email');
-            $table->string('peer_reviewer_name');
-            $table->string('prn_email');
-            $table->string('review_committee_approval');
-            $table->string('version_number');
+            $table->string('module_tutor_name')->nullable();
+            $table->string('module_tutor_email')->nullable();
+            $table->string('peer_reviewer_name')->nullable();
+            $table->string('peer_reviewer_email')->nullable();
+            $table->date('approval_date');
+            $table->string('version_number')->nullable();
             $table->unsignedBigInteger('subject_id');
             $table->unsignedBigInteger('stage_id');
+
             $table->timestamps();
             $table->foreign("subject_id")->references("id")->on("subjects")->onDelete('cascade');
             $table->foreign("stage_id")->references("id")->on("stages")->onDelete('cascade');
-
         });
     }
 
