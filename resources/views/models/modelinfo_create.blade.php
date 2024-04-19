@@ -7,11 +7,11 @@
                 @csrf
 
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="module_code" class="block text-gray-700 font-medium mb-2">Module Title:</label>
-                    <input type="text" name="module_code" id="module_code"
+                    <label for="module_title" class="block text-gray-700 font-medium mb-2">Module Title:</label>
+                    <input type="text" name="module_title" id="module_title"
                         class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500"
                         required>
-                    @error('module_code')
+                    @error('module_title')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                     @enderror
                 </div>
@@ -27,11 +27,11 @@
                 </div>
 
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="module_title" class="block text-gray-700 font-medium mb-2">Module Code:</label>
-                    <input type="text" name="module_title" id="module_title"
+                    <label for="module_code" class="block text-gray-700 font-medium mb-2">Module Code:</label>
+                    <input type="text" name="module_code" id="module_code"
                         class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500"
                         required>
-                    @error('module_title')
+                    @error('module_code')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                     @enderror
                 </div>

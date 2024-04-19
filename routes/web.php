@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeliveryPlanController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\ModelinfoController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StageController;
 use App\Http\Controllers\SubjectContentController;
 use App\Http\Controllers\SubjectController;
+use App\Models\DeliveryPlan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -59,15 +61,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/model/{modelinfo}/edit', [ModelinfoController::class, 'edit'])->name('model.edit');
     Route::post('/model/{modelinfo}/update', [ModelinfoController::class, 'update'])->name('model.update');
     Route::get('/model/{modelinfo}/show', [ModelinfoController::class, 'show'])->name('model.show');
+    Route::get('/model/{modelinfo}/related', [ModelinfoController::class, 'related'])->name('model.related');
 
+    // Route::get('/models', [ModelinfoController::class, 'index'])->name('models');
+    // Route::get('/model/create', [ModelinfoController::class, 'create'])->name('model.create');
+    Route::post('/plandelivery/store', [DeliveryPlanController::class, 'store'])->name('plandelivery.store');
+    Route::delete('/plandelivery/delete/{DeliveryPlan}', [DeliveryPlanController::class, 'destroy'])->name('plandelivery.destroy');
 
-
-
+    Route::put('/plandelivery/update/{DeliveryPlan}', [DeliveryPlanController::class, 'update'])->name('plandelivery.update');
+    Route::get('/model/{modelinfo}/show', [ModelinfoController::class, 'show'])->name('model.show');
 });
 
 Route::get('/test', function () {
 
-return view('test');
+    return view('test');
 });
 
 

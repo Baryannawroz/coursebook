@@ -24,7 +24,7 @@ class UpdateStageRequest extends FormRequest
         $id = $this->route('stage.update'); // Assuming the route parameter name is 'faculty'
 
         return [
-            'name' => ['required', 'min:3', 'unique:stages,name,' . $id],
+            'name' => ['required', 'min:3'],
             'code' => ['required'],
             'department_id' => ['required']
 

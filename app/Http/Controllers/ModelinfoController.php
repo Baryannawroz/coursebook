@@ -6,8 +6,10 @@ use App\Models\Modelinfo;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreModelinfoRequest;
 use App\Http\Requests\UpdateModelinfoRequest;
+use App\Models\DeliveryPlan;
 use App\Models\Stage;
 use App\Models\Subject;
+use App\Models\SubjectContent;
 
 class ModelinfoController extends Controller
 {
@@ -18,7 +20,7 @@ class ModelinfoController extends Controller
     {
         $modelinfos = Modelinfo::with('subject', 'stage.department')->get();
 
-        return view('models.modelinfo_index',compact('modelinfos'));
+        return view('models.modelinfo_index', compact('modelinfos'));
     }
 
     /**
@@ -26,9 +28,9 @@ class ModelinfoController extends Controller
      */
     public function create()
     {
-        $subjects=Subject::all();
-        $stages=Stage::with('department')->get();
-        return view('models.modelinfo_create',compact('subjects','stages'));
+        $subjects = Subject::all();
+        $stages = Stage::with('department')->get();
+        return view('models.modelinfo_create', compact('subjects', 'stages'));
     }
 
     /**
@@ -40,8 +42,7 @@ class ModelinfoController extends Controller
 
 
         Modelinfo::create($validatedData);
-       return redirect()->route("models");
-
+        return redirect()->route("models");
     }
 
     /**
@@ -49,7 +50,29 @@ class ModelinfoController extends Controller
      */
     public function show(Modelinfo $modelinfo)
     {
-        return view('models.modelinfo_show')->with('model',$modelinfo);
+
+        $contents = SubjectContent::where('subject_id', $modelinfo->subject_id)->get();
+
+
+    $subjectContents = DeliveryPlan::join('subject_contents', 'delivery_plans.material_covered_id', '=', 'subject_contents.id')
+    ->where('delivery_plans.modelinfo_id', $modelinfo->id)
+    ->select('delivery_plans.*', 'subject_contents.material_covered') // Select specific columns from SubjectContent
+    ->get();
+
+
+
+
+            $model_id= $modelinfo->id;
+
+
+
+
+        return view('models.modelinfo_show',compact('subjectContents', 'contents', 'model_id'))->with('model', $modelinfo);
+    }
+    public function related(Modelinfo $modelinfo)
+    {
+        
+dd($modelinfo);
     }
 
     /**
@@ -60,7 +83,7 @@ class ModelinfoController extends Controller
 
         $subjects = Subject::all();
         $stages = Stage::with('department')->get();
-        return view('models.modelinfo_edit',compact('subjects','stages'))->with('model',$modelinfo);
+        return view('models.modelinfo_edit', compact('subjects', 'stages'))->with('model', $modelinfo);
     }
 
     /**
@@ -72,7 +95,7 @@ class ModelinfoController extends Controller
 
         // Update the Modelinfo instance with the validated data
         $modelinfo->update($validatedData);
-      return  redirect()->route('models');
+        return  redirect()->route('models');
     }
 
     /**

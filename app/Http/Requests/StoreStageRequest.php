@@ -23,7 +23,7 @@ class StoreStageRequest extends FormRequest
     {
         return [
 
-            'name' => ['required', 'min:3', 'unique:stages'],
+            'name' => ['required', 'min:3'],
             'code' => ['required'],
             'department_id' => ['required'],
         ];

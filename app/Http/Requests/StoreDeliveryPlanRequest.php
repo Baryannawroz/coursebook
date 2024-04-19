@@ -11,7 +11,7 @@ class StoreDeliveryPlanRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return True;
     }
 
     /**
@@ -22,7 +22,8 @@ class StoreDeliveryPlanRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'modelinfo_id' => 'required',
+            'material_covered_id' => 'required'
         ];
     }
 }

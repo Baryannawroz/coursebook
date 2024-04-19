@@ -31,6 +31,8 @@ return new class extends Migration
             $table->string('peer_reviewer_email')->nullable();
             $table->date('approval_date');
             $table->string('version_number')->nullable();
+            $table->string('pre_requisites ')->nullable();
+            $table->string('co_requisites ')->nullable();
             $table->unsignedBigInteger('subject_id');
             $table->unsignedBigInteger('stage_id');
 
