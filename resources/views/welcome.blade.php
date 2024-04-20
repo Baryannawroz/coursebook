@@ -42,6 +42,7 @@
                                 @auth
                                     <a
                                         href="{{ url('/dashboard') }}"
+                                        class="bg-blue-600 text-white py-3 font-bold px-6 rounded-lg shadow-lg text-center sm:flex-1"
                                     >
                                         Dashboard
                                     </a>
