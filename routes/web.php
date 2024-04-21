@@ -61,7 +61,18 @@ Route::middleware('auth')->group(function () {
     Route::get('/model/{modelinfo}/edit', [ModelinfoController::class, 'edit'])->name('model.edit');
     Route::post('/model/{modelinfo}/update', [ModelinfoController::class, 'update'])->name('model.update');
     Route::get('/model/{modelinfo}/show', [ModelinfoController::class, 'show'])->name('model.show');
+
     Route::get('/model/{modelinfo}/related', [ModelinfoController::class, 'related'])->name('model.related');
+    Route::post('/model/{modelinfo}/updaterelation', [ModelinfoController::class, 'relatedupdate'])->name('model.updaterelation');
+
+    Route::get('/model/{modelinfo}/resources', [ModelinfoController::class, 'resources'])->name('model.resources');
+    Route::post('/model/{modelinfo}/updateresources', [ModelinfoController::class, 'resourcesupdate'])->name('model.updateresources');
+
+    Route::get('/model/{modelinfo}/strategie', [ModelinfoController::class, 'strategie'])->name('model.strategie');
+    Route::post('/model/{modelinfo}/updatestrategie', [ModelinfoController::class, 'strategieupdate'])->name('model.updatestrategie');
+
+    Route::get('/model/{modelinfo}/aim', [ModelinfoController::class, 'aim'])->name('model.aims');
+    Route::post('/model/{modelinfo}/updaterelaim', [ModelinfoController::class, 'aimupdate'])->name('model.updateaims');
 
     // Route::get('/models', [ModelinfoController::class, 'index'])->name('models');
     // Route::get('/model/create', [ModelinfoController::class, 'create'])->name('model.create');

@@ -120,6 +120,60 @@
     </div>
 
     <div class="container mx-auto text-center mt-8">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Module Aims, Learning Outcomes
+            and Indicative Contents</h5>
+
+        <div class="max-w-2xl mx-auto">
+            <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700 text-left">
+                <thead class="bg-gray-100 dark:bg-gray-700">
+                    <a href="{{ route('model.aims',$model->id)  }}"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-4">Edit</a>
+                    <tr>
+
+                        <th scope="col"
+                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                            Module Aims
+                        </th>
+                        <th scope="col"
+                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                            {!! $model->module_aims !!}
+                        </th>
+
+
+
+                    </tr>
+                    <tr>
+
+                        <th scope="col"
+                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                            Module Learning
+                            Outcomes
+                        </th>
+                        <th scope="col"
+                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                            {!! $model->module_learning_outcomes !!} </th>
+
+
+
+                    </tr>
+                    <tr>
+
+                        <th scope="col"
+                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                            Indicative Contents
+                        </th>
+                        <th scope="col"
+                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                            {!! $model->indicative_contents !!} </th>
+
+
+
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="container mx-auto text-center mt-8">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Relation With Other Modules
         </h5>
 
@@ -127,8 +181,7 @@
             <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700 text-left">
                 <thead class="bg-gray-100 dark:bg-gray-700">
                     <a href="{{ route('model.related',$model->id)  }}"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-4">Add
-                        Stage</a>
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-4">Edit</a>
                     <tr>
 
                         <th scope="col"
@@ -137,7 +190,7 @@
                         </th>
                         <th scope="col"
                             class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                            {!!  $model->pre_requisites !!}
+                            {!! $model->pre_requisites !!}
                         </th>
 
 
@@ -156,6 +209,83 @@
 
 
                     </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="container mx-auto text-center mt-8">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Learning and Teaching
+            Strategies </h5>
+
+        <div class="max-w-2xl mx-auto">
+            <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700 text-left">
+                <thead class="bg-gray-100 dark:bg-gray-700">
+                    <a href="{{ route('model.strategie',$model->id)  }}"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-4">Edit</a>
+                    <tr>
+
+                        <th scope="col"
+                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                            Strategies
+                        </th>
+                        <th scope="col"
+                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                            {!! $model->strategies !!}
+                        </th>
+
+
+
+                    </tr>
+
+                </thead>
+            </table>
+        </div>
+    </div>
+    <div class="container mx-auto text-center mt-8">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Learning and Teaching Resources </h5>
+
+        <div class="max-w-2xl mx-auto">
+            <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700 text-left">
+                <thead class="bg-gray-100 dark:bg-gray-700">
+                    <a href="{{ route('model.resources',$model->id)  }}"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-4">Edit</a>
+                    <tr>
+
+                        <th scope="col"
+                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                            Required Texts
+                        </th>
+                        <th scope="col"
+                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                            {!! $model->required_texts !!}
+                        </th>
+
+
+
+                    </tr>
+                    <tr>
+
+                        <th scope="col"
+                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                            Recomended Texts
+                        </th>
+                        <th scope="col"
+                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                            {!! $model->recommended_texts !!}
+                        </th>
+                    </tr>
+                    <tr>
+
+                        <th scope="col"
+                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                            Websites
+                        </th>
+                        <th scope="col"
+                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                            {!! $model->websites !!}
+                        </th>
+                    </tr>
+
                 </thead>
             </table>
         </div>
