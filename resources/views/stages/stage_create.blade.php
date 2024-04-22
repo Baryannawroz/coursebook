@@ -1,14 +1,14 @@
 <x-app-layout>
-    <div class="flex items-center justify-center h-screen bg-gray-100">
-        <div class="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
-            <h1 class="text-2xl font-bold mb-4">Create New stage</h1>
+    <div class="flex items-center justify-center h-screen ">
+        <div class="bg-blue-600 p-8 rounded-lg w-full max-w-md    ">
+            <h1 class="text-2xl font-bold mb-4 text-center text-white">Create New stage</h1>
+            <h6 class="text-center w-full text-white">Please Fill information below</h6>
 
-            <form action="{!! route('stage.store') !!}" method="POST">
+            <form action="{!! route('stage.store') !!}" method="POST" class="mt-8 space-y-6">
                 @csrf
 
-                <div class="mb-4">
-                    <label for="name" class="block text-gray-700 font-medium mb-2">Name:</label>
-                    <input type="text" name="name" id="name"
+                <div class="mb-4 flex items-center justify-center">
+                    <input type="text" name="name" id="name" placeholder="please enter name"
                         class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500"
                         required>
                     @error('name')
@@ -16,9 +16,8 @@
                     @enderror
                 </div>
 
-                <div class="mb-4">
-                    <label for="code" class="block text-gray-700 font-medium mb-2">code:</label>
-                    <input type="text" name="code" id="code"
+                <div class="mb-4 flex items-center justify-center">
+                    <input type="text" name="code" id="code" placeholder="please enter code"
                         class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500"
                         required>
                     @error('code')
@@ -26,8 +25,7 @@
                     @enderror
                 </div>
 
-                <div class="mb-4">
-                    <label for="department_id" class="block text-gray-700 font-medium mb-2">department:</label>
+                <div class="mb-4 flex items-center justify-center">
                     <select name="department_id" id="department_id"
                         class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500">
 
@@ -39,10 +37,12 @@
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                     @enderror
                 </div>
+                <div class="flex justify-center">
 
-                <button type="submit"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">Create
-                    stage</button>
+                  <button type="submit"
+                      class="text-white border border-white  hover:bg-white hover:text-blue-600 font-bold py-2 px-8 rounded-lg focus:outline-none focus:shadow-outline">Create
+                      stage</button>
+                </div>
             </form>
         </div>
     </div>
