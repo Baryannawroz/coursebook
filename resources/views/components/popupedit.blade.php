@@ -76,7 +76,7 @@
     </style>
 </head>
 
-<body>
+<body class="bg-red-600">
     <button data-modal-target="#modal2">Edit</button>
     <div class="modal2" id="modal2">
         <div class="modal-header">
