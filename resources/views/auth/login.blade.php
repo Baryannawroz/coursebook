@@ -20,7 +20,7 @@
                             type="password"
                             name="password"
                             required autocomplete="current-password" 
-                            placeholder="Enter your email"
+                            placeholder="Enter your password"
                             />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
