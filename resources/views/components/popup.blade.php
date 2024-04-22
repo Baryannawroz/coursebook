@@ -12,35 +12,18 @@
         *::before {
             box-sizing: border-box;
         }
-        .modal {
+        #overlay {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    transition: 200ms ease-in-out;
-    border-radius: 10px;
-    z-index: 10;
-    background-color: rgba(56, 122, 223, 0.9); /* Adjust opacity as needed */
-    width: 500px;
-    max-width: 80%;
-    backdrop-filter: blur(10px); /* Adjust blur radius as needed */
-}
-
-.modal.active {
-    transform: translate(-50%, -50%) scale(1);
-}
-
-#overlay {
-    position: fixed;
-    opacity: 0;
-    transition: 200ms ease-in-out;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
+    z-index: 9; /* Ensure it's behind the modal */
+    opacity: 0;
     pointer-events: none;
-    backdrop-filter: blur(2px); /* Adjust blur radius as needed */
+    transition: opacity 0.2s ease-in-out;
 }
 
 #overlay.active {
@@ -48,6 +31,23 @@
     pointer-events: all;
 }
 
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: rgba(56, 122, 223, 0.9);
+    width: 500px;
+    max-width: 80%;
+    backdrop-filter: blur(10px);
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
         .modal-header {
             padding: 10px 15px;
             display: flex;
