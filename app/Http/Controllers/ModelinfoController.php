@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreModelinfoRequest;
 use App\Http\Requests\UpdateModelinfoRequest;
 use App\Models\DeliveryPlan;
+use App\Models\Module_evaluation;
 use App\Models\Stage;
 use App\Models\Subject;
 use App\Models\SubjectContent;
@@ -53,6 +54,8 @@ class ModelinfoController extends Controller
     {
 
         $contents = SubjectContent::where('subject_id', $modelinfo->subject_id)->get();
+        $module_evaluations = Module_evaluation::where('modelinfo_id', $modelinfo->id)->get();
+
 
 
         $subjectContents = DeliveryPlan::join('subject_contents', 'delivery_plans.material_covered_id', '=', 'subject_contents.id')
@@ -68,7 +71,7 @@ class ModelinfoController extends Controller
 
 
 
-        return view('models.modelinfo_show', compact('subjectContents', 'contents', 'model_id'))->with('model', $modelinfo);
+        return view('models.modelinfo_show', compact('subjectContents', "module_evaluations", 'contents', 'model_id'))->with('model', $modelinfo);
     }
 
 
@@ -178,6 +181,29 @@ class ModelinfoController extends Controller
 
         // Update the Modelinfo instance with the validated data
         $modelinfo->update($validatedData);
+        return  redirect()->route('model.show', $modelinfo->id);
+    }
+    public function evalution(Modelinfo $modelinfo)
+    {
+        $moduleEvaluations = Module_evaluation::where('modelinfo_id', $modelinfo->id)->get();
+        return view('models.attribute.evalution',compact('moduleEvaluations'))->with('model', $modelinfo);
+    }
+
+    public function evalutionupdate(Request $request, Modelinfo $modelinfo)
+    {
+
+        Module_evaluation::where('modelinfo_id', $modelinfo->id)->delete();
+
+        foreach ($request->evaluation as $key => $value) {
+            Module_evaluation::create([
+                'modelinfo_id' => $modelinfo->id,
+                'evaluation' => $request->evaluation[$key],
+                'number_time' => $request->number_time[$key],
+                'weight_mark' => $request->weight_mark[$key],
+                'week_due' => $request->week_due[$key],
+                'relevant_learning_outcome' => $request->relevant_learning_outcome[$key],
+            ]);
+        }
         return  redirect()->route('model.show', $modelinfo->id);
     }
 }

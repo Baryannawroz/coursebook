@@ -74,7 +74,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/model/{modelinfo}/aim', [ModelinfoController::class, 'aim'])->name('model.aims');
     Route::post('/model/{modelinfo}/updaterelaim', [ModelinfoController::class, 'aimupdate'])->name('model.updateaims');
 
-    // Route::get('/models', [ModelinfoController::class, 'index'])->name('models');
+    Route::get('/model/{modelinfo}/evalution', [ModelinfoController::class, 'evalution'])->name('model.evalution');
+    Route::post('/model/{modelinfo}/updaterelevalution', [ModelinfoController::class, 'evalutionupdate'])->name('model.updateevalution');
+
+    // Route::get('/models', [ModelinfoController::class, 'index'])->name('models');evalution
     // Route::get('/model/create', [ModelinfoController::class, 'create'])->name('model.create');
     Route::post('/plandelivery/store', [DeliveryPlanController::class, 'store'])->name('plandelivery.store');
     Route::delete('/plandelivery/delete/{DeliveryPlan}', [DeliveryPlanController::class, 'destroy'])->name('plandelivery.destroy');
