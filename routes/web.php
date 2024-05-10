@@ -56,6 +56,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/content/{subjectContent}/update', [SubjectContentController::class, 'update'])->name('content.update');
 
     Route::get('/models', [ModelinfoController::class, 'index'])->name('models');
+    Route::get('/model/approved', [ModelinfoController::class, 'approved'])->name('model.approved');
+    Route::get('/model/{modelinfo}/approving', [ModelinfoController::class, 'approving'])->name('model.approving');
     Route::get('/model/create', [ModelinfoController::class, 'create'])->name('model.create');
     Route::post('/model/store', [ModelinfoController::class, 'store'])->name('model.store');
     Route::get('/model/{modelinfo}/edit', [ModelinfoController::class, 'edit'])->name('model.edit');

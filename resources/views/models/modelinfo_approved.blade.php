@@ -45,7 +45,14 @@
                               >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter"><path d="M2,12S5,4,12,4s10,8,10,8-2,8-10,8S2,12,2,12Z"/><circle cx="12" cy="12" r="4" stroke-width="0" fill="#059cf7" opacity="0.1"/><circle cx="12" cy="12" r="4"/></svg>
                             </a>
-                          
+                            <a href="{{ route('model.approving', $model->id) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 24 24" fill="none" stroke="#000000"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10" stroke="none" fill="#059cf7" opacity="0.1" />
+                                    <circle cx="12" cy="12" r="10" stroke="#059cf7" fill="none" />
+                                    <path d="M9 12L11 14 15 10" stroke="#059cf7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </a>
                         </div>
                     </td>
                 </tr>

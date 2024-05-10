@@ -24,6 +24,20 @@ class ModelinfoController extends Controller
 
         return view('models.modelinfo_index', compact('modelinfos'));
     }
+    public function approved()
+    {
+        $modelinfos = Modelinfo::with('subject', 'stage.department')
+            ->where('approved', 0)
+            ->get();
+
+        return view('models.modelinfo_approved', compact('modelinfos'));
+    }
+    public function approving(Modelinfo $modelinfo)
+    {
+        $modelinfo->approved = 1;
+        $modelinfo->save();
+        return redirect()->back();
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -186,7 +200,7 @@ class ModelinfoController extends Controller
     public function evalution(Modelinfo $modelinfo)
     {
         $moduleEvaluations = Module_evaluation::where('modelinfo_id', $modelinfo->id)->get();
-        return view('models.attribute.evalution',compact('moduleEvaluations'))->with('model', $modelinfo);
+        return view('models.attribute.evalution', compact('moduleEvaluations'))->with('model', $modelinfo);
     }
 
     public function evalutionupdate(Request $request, Modelinfo $modelinfo)
