@@ -87,6 +87,29 @@ class ModelinfoController extends Controller
 
         return view('models.modelinfo_show', compact('subjectContents', "module_evaluations", 'contents', 'model_id'))->with('model', $modelinfo);
     }
+    public function showpdf(Modelinfo $modelinfo)
+    {
+
+        $contents = SubjectContent::where('subject_id', $modelinfo->subject_id)->get();
+        $module_evaluations = Module_evaluation::where('modelinfo_id', $modelinfo->id)->get();
+
+
+
+        $subjectContents = DeliveryPlan::join('subject_contents', 'delivery_plans.material_covered_id', '=', 'subject_contents.id')
+            ->where('delivery_plans.modelinfo_id', $modelinfo->id)
+            ->select('delivery_plans.*', 'subject_contents.material_covered') // Select specific columns from SubjectContent
+            ->get();
+
+
+
+
+        $model_id = $modelinfo->id;
+
+
+
+
+        return view('models.modelinfo_showpdf', compact('subjectContents', "module_evaluations", 'contents', 'model_id'))->with('model', $modelinfo);
+    }
 
 
     /**

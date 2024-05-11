@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StageController;
 use App\Http\Controllers\SubjectContentController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\UserController;
 use App\Models\DeliveryPlan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -56,6 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/content/{subjectContent}/update', [SubjectContentController::class, 'update'])->name('content.update');
 
     Route::get('/models', [ModelinfoController::class, 'index'])->name('models');
+    Route::get('/Users', [UserController::class, 'index'])->name('users');
     Route::get('/model/approved', [ModelinfoController::class, 'approved'])->name('model.approved');
     Route::get('/model/{modelinfo}/approving', [ModelinfoController::class, 'approving'])->name('model.approving');
     Route::get('/model/create', [ModelinfoController::class, 'create'])->name('model.create');
@@ -63,6 +65,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/model/{modelinfo}/edit', [ModelinfoController::class, 'edit'])->name('model.edit');
     Route::post('/model/{modelinfo}/update', [ModelinfoController::class, 'update'])->name('model.update');
     Route::get('/model/{modelinfo}/show', [ModelinfoController::class, 'show'])->name('model.show');
+    Route::get('/modelpdf/{modelinfo}/show', [ModelinfoController::class, 'showpdf'])->name('modelpdf.show');
 
     Route::get('/model/{modelinfo}/related', [ModelinfoController::class, 'related'])->name('model.related');
     Route::post('/model/{modelinfo}/updaterelation', [ModelinfoController::class, 'relatedupdate'])->name('model.updaterelation');
