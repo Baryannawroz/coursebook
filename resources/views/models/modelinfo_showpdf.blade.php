@@ -32,6 +32,95 @@
             </div>
         </div>
 
+
+<div class="flex items-center justify-center bg-gray-100">
+<div class="bg-white p-6 rounded-lg shadow-md w-full">
+    <h1 class="text-2xl font-bold mb-4">Module Information</h1>
+
+    <table class="border-collapse w-full">
+        <tr>
+            <th class="border border-gray-300 py-2 px-3 font-medium">Field</th>
+            <th class="border border-gray-300 py-2 px-3 font-medium">Data</th>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Module Title</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->module_title }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Module Type</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->module_type }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Module Code</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->module_code }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Credit</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->credits }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Module Level</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->module_level }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Semester of Delivery</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->semester_of_delivery }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Module Leader Name</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->module_leader }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Module Leader Email</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->module_leader_email }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Module Leader Academic Title</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->module_leader_academic_title }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Module Leader Qualification</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->module_leader_qualification }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Module Tutor Name</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->module_tutor_name }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Module Tutor Email</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->module_tutor_email }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Peer Reviewer Name</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->peer_reviewer_name }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Peer Reviewer Email</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->peer_reviewer_email }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Approval Date</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->approval_date }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Version Number</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->version_number }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Subject</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->subject->name }}</td>
+        </tr>
+        <tr>
+            <td class="border border-gray-300 py-2 px-3 font-medium">Stage</td>
+            <td class="border border-gray-300 py-2 px-3">{{ $model->stage->department->name }} {{ $model->stage->name }}
+            </td>
+        </tr>
+        <!-- Add more rows for additional fields if needed -->
+    </table>
+</div>
+</div>
+
+
         <div class="">
 
             <div class="container mx-auto text-center my-32">
