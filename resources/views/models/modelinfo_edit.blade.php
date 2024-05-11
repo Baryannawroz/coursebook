@@ -1,13 +1,13 @@
 <x-app-layout>
     <div class="flex items-center justify-center  bg-gray-100">
         <div class="bg-white p-6 rounded-lg shadow-md w-full ">
-            <h1 class="text-2xl font-bold mb-4">Create New Module Information</h1>
+            <h1 class="text-2xl font-bold mb-43 text-center mb-12 text-blue-600">Create New Module Information</h1>
 
             <form action="{!! route('model.update',$model->id) !!}" method="POST" class="flex flex-wrap">
                 @csrf
 
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="module_title" class="block text-gray-700 font-medium mb-2">Module Title:</label>
+                    <label for="module_title" class="block text-blue-600 font-medium mb-2">Module Title:</label>
                     <input type="text" name="module_title" id="module_title" value="{{ $model->module_title }}"
                         class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500"
                         required>
@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="module_type" class="block text-gray-700 font-medium mb-2">Module Type:</label>
+                    <label for="module_type" class="block text-blue-600 font-medium mb-2">Module Type:</label>
                     <input type="text" name="module_type" id="module_type" value="{{ $model->module_type }}"
                         class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500"
                         required>
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="module_code" class="block text-gray-700 font-medium mb-2">Module Code:</label>
+                    <label for="module_code" class="block text-blue-600 font-medium mb-2">Module Code:</label>
                     <input type="text" name="module_code" id="module_code" value="{{ $model->module_code }}"
                         class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500"
                         required>
@@ -36,7 +36,7 @@
                     @enderror
                 </div>
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="credits" class="block text-gray-700 font-medium mb-2">Credit:</label>
+                    <label for="credits" class="block text-blue-600 font-medium mb-2">Credit:</label>
                     <input type="number" name="credits" id="credits" value="{{ $model->credits}}"
                         class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500"
                         required>
@@ -45,7 +45,7 @@
                     @enderror
                 </div>
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="module_level" class="block text-gray-700 font-medium mb-2">module level:</label>
+                    <label for="module_level" class="block text-blue-600 font-medium mb-2">module level:</label>
                     <input type="text" name="module_level" id="module_level" value="{{ $model->module_level }}"
                         class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500"
                         required>
@@ -54,7 +54,7 @@
                     @enderror
                 </div>
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="semester_of_delivery" class="block text-gray-700 font-medium mb-2">Semester of
+                    <label for="semester_of_delivery" class="block text-blue-600 font-medium mb-2">Semester of
                         Delivery:</label>
                     <input type="number" max="12" min="1" name="semester_of_delivery" id="semester_of_delivery"
                         value="{{ $model->semester_of_delivery }}"
@@ -65,7 +65,7 @@
                     @enderror
                 </div>
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="module_leader" class="block text-gray-700 font-medium mb-2">Module Leader Name:</label>
+                    <label for="module_leader" class="block text-blue-600 font-medium mb-2">Module Leader Name:</label>
                     <input type="text" name="module_leader" id="module_leader" value="{{ $model->module_leader }}"
                         class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500"
                         required>
@@ -74,7 +74,7 @@
                     @enderror
                 </div>
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="module_leader_email" class="block text-gray-700 font-medium mb-2">Module Leader
+                    <label for="module_leader_email" class="block text-blue-600 font-medium mb-2">Module Leader
                         emial:</label>
                     <input type="email" name="module_leader_email" id="module_leader_email"
                         value="{{ $model->module_leader_email }}"
@@ -85,7 +85,7 @@
                     @enderror
                 </div>
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="module_leader_academic_title" class="block text-gray-700 font-medium mb-2">Academic
+                    <label for="module_leader_academic_title" class="block text-blue-600 font-medium mb-2">Academic
                         Title:</label>
                     <input type="text" name="module_leader_academic_title" id="module_leader_academic_title"
                         value="{{ $model->module_leader_academic_title }}"
@@ -96,7 +96,7 @@
                     @enderror
                 </div>
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="module_leader_qualification" class="block text-gray-700 font-medium mb-2">Module
+                    <label for="module_leader_qualification" class="block text-blue-600 font-medium mb-2">Module
                         Qualification:</label>
                     <input type="text" name="module_leader_qualification" id="module_leader_qualification"
                         value="{{ $model->module_leader_qualification }}"
@@ -107,7 +107,7 @@
                     @enderror
                 </div>
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="module_tutor_name" class="block text-gray-700 font-medium mb-2">Module Tutor
+                    <label for="module_tutor_name" class="block text-blue-600 font-medium mb-2">Module Tutor
                         name:</label>
                     <input type="text" name="module_tutor_name" id="module_tutor_name"
                         value="{{ $model->module_tutor_name}}"
@@ -119,7 +119,7 @@
                 </div>
 
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="module_tutor_email" class="block text-gray-700 font-medium mb-2">Module Tutor
+                    <label for="module_tutor_email" class="block text-blue-600 font-medium mb-2">Module Tutor
                         emial:</label>
                     <input type="email" name="module_tutor_email" id="module_tutor_email"
                         value="{{ $model->module_tutor_email }}"
@@ -130,7 +130,7 @@
                     @enderror
                 </div>
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="peer_reviewer_name" class="block text-gray-700 font-medium mb-2">Module Reviewer
+                    <label for="peer_reviewer_name" class="block text-blue-600 font-medium mb-2">Module Reviewer
                         Name:</label>
                     <input type="text" name="peer_reviewer_name" id="peer_reviewer_name"
                         value="{{ $model->peer_reviewer_name }}"
@@ -141,7 +141,7 @@
                     @enderror
                 </div>
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="peer_reviewer_email" class="block text-gray-700 font-medium mb-2">Module Reviewer
+                    <label for="peer_reviewer_email" class="block text-blue-600 font-medium mb-2">Module Reviewer
                         emial:</label>
                     <input type="email" name="peer_reviewer_email" id="peer_reviewer_email"
                         value="{{ $model->peer_reviewer_email }}"
@@ -152,7 +152,7 @@
                     @enderror
                 </div>
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="approval_date" class="block text-gray-700 font-medium mb-2">Approval date:</label>
+                    <label for="approval_date" class="block text-blue-600 font-medium mb-2">Approval date:</label>
                     <input type="date" name="approval_date" id="approval_date" value="{{ $model->approval_date }}"
                         class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500"
                         required>
@@ -161,7 +161,7 @@
                     @enderror
                 </div>
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="version_number" class="block text-gray-700 font-medium mb-2">Version Number:</label>
+                    <label for="version_number" class="block text-blue-600 font-medium mb-2">Version Number:</label>
                     <input type="number" min="1" name="version_number" id="version_number"
                         value="{{ $model->version_number }}"
                         class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500"
@@ -173,7 +173,7 @@
 
 
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="subject_id" class="block text-gray-700 font-medium mb-2">Subject:</label>
+                    <label for="subject_id" class="block text-blue-600 font-medium mb-2">Subject:</label>
                     <select name="subject_id" id="subject_id"
                         class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500">
                         @foreach($subjects as $subject)
@@ -188,7 +188,7 @@
 
                 <!-- Example for Select2 with stages -->
                 <div class="mb-4 md:basis-1/2 basis-full px-2">
-                    <label for="stage_id" class="block text-gray-700 font-medium mb-2">Stage:</label>
+                    <label for="stage_id" class="block text-blue-600 font-medium mb-2">Stage:</label>
                     <select name="stage_id" id="stage_id"
                         class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500">
                         @foreach($stages as $stage)
@@ -200,12 +200,14 @@
                     @enderror
                 </div>
 
-                <!-- Repeat this pattern for the remaining attributes -->
+              
 
-                <!-- Add submit button -->
-                <button type="submit mx-auto basis-1/4"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">Create
-                    Module Information</button>
+                <div class="mb-4 w-full px-2 flex justify-center">
+    <!-- Add submit button -->
+    <button type="submit"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">Create
+        Module Information</button>
+</div>
             </form>
         </div>
     </div>
