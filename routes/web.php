@@ -100,5 +100,8 @@ Route::get('/test', function () {
 use App\Http\Controllers\FormController;
 
 Route::post('/submit', [FacultyController::class, 'show'])->name('submit');
+// web.php or api.php 
+
+
 
 require __DIR__ . '/auth.php';

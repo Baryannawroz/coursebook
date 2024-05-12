@@ -1,600 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module Descriptor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+
+    <script>
+        async function generatePDF() {
+            try {
+                const input = document.getElementById("contentToConvert");
+
+                // Use higher resolution for better PDF quality
+                const options = { scale: 2, useCORS: true };
+                const canvas = await html2canvas(input, options);
+
+                const pdf = new jspdf.jsPDF('p', 'pt', 'a4');
+                const imgProps = pdf.getImageProperties(canvas.toDataURL('image/png'));
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                
+                pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save("module_descriptor.pdf");
+            } catch (error) {
+                console.error("Error generating PDF:", error);
+          
+            }
+        }
+    </script>
+</head>
+
+<body>
 <x-app-layout>
-    <div>
+    <div id="contentToConvert">
+    <table class="flex justify-center items-center">
 
-        <div class="flex flex-wrap mt-6 pointer">
-
-            <div class="w-full md:w-1/3 px-2 my-4">
-
-                <div class="p-6 first-section rounded-lg shadow transition duration-300 ease-in-out text-center">
-
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">Subject</h5>
-                    <p class="font-normal text-white">{{ $model->subject->name }}</p>
-                </div>
-            </div>
-            <div class="w-full md:w-1/3 px-2 my-4">
-
-                <div
-                    class="p-6 rounded-lg shadow secound-section transition duration-300 ease-in-out pointer text-center">
-
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">Department & stage
-                    </h5>
-                    <p class="font-normal text-white">{{ $model->stage->department->name ."/".$model->stage->name}}</p>
-                </div>
-            </div>
-            <div class="w-full md:w-1/3 px-2 my-4">
-
-                <div
-                    class="p-6 rounded-lg shadow third-section transition duration-300 ease-in-out pointer text-center">
-
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">Lecturer</h5>
-                    <p class="font-normal text-white">{{ $model->module_leader}}</p>
-                </div>
-            </div>
-        </div>
+<tr class=" ">
+  <td colspan="4">
+    <div class="flex  ">
+      <div class="border-2 border-black p-8">
+      <img src="{{ URL::asset('/image/koya.png') }}" alt="" height="200" width="200">
+    </div>
+    <div class="col-span-2 text-center border-y-2 border-black p-8">
+      <div class=" text-lg font-bold">Kurdistan Region - Iraq</div>
+      <div class="text-gray-600 font-bold">Ministry of Higher Education and Scientific Research</div>
+      <div class="mt-2 font-bold">Koya University</div>
+      <div class="text-red-500 font-bold">Dept. of Software Engineering</div>
+    </div>
+    <div class="flex items-center justify-center border-2 border-black p-8">
+      <img src="{{ URL::asset('/image/high.png') }}" alt="" height="200" width="200">
+    </div>
+  </div>
+</td>
+</tr>
+</table>
 
 
-<div class="flex items-center justify-center bg-gray-100">
-<div class="bg-white p-6 rounded-lg shadow-md w-full">
-    <h1 class="text-2xl font-bold mb-4">Module Information</h1>
 
-    <table class="border-collapse w-full">
-        <tr>
-            <th class="border border-gray-300 py-2 px-3 font-medium">Field</th>
-            <th class="border border-gray-300 py-2 px-3 font-medium">Data</th>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Module Title</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->module_title }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Module Type</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->module_type }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Module Code</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->module_code }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Credit</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->credits }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Module Level</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->module_level }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Semester of Delivery</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->semester_of_delivery }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Module Leader Name</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->module_leader }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Module Leader Email</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->module_leader_email }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Module Leader Academic Title</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->module_leader_academic_title }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Module Leader Qualification</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->module_leader_qualification }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Module Tutor Name</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->module_tutor_name }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Module Tutor Email</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->module_tutor_email }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Peer Reviewer Name</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->peer_reviewer_name }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Peer Reviewer Email</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->peer_reviewer_email }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Approval Date</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->approval_date }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Version Number</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->version_number }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Subject</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->subject->name }}</td>
-        </tr>
-        <tr>
-            <td class="border border-gray-300 py-2 px-3 font-medium">Stage</td>
-            <td class="border border-gray-300 py-2 px-3">{{ $model->stage->department->name }} {{ $model->stage->name }}
-            </td>
-        </tr>
-        <!-- Add more rows for additional fields if needed -->
+<div class="  p-4 ">
+  <h1 class="text-blue-900 text-2xl font-bold text-center">MODULE DESCRIPTOR FORM </h1>
+</div>
+<div class="flex items-center justify-center ">
+  <div class="bg-white p-6 rounded-lg  w-3/4">
+    <table class=" w-full">
+      <div class="bg-orange-200  p-4 border-2 border-black border-b-0">
+        <h1 class="text-blue-900 text-2xl font-bold text-center">Module Information</h1>
+      </div>
+      <tr class="w-full ">
+
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl ">Module Title</td>
+        <td class="border-2 border-black py-2 px-3 text-red-600">{{ $model->module_title }}</td>
+
+
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl  ">Module Type</td>
+        <td class="border-2 border-black py-2 px-3 text-red-600">{{ $model->module_type }}</td>
+
+
+      </tr>
+      <tr>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Module Code</td>
+        <td class="border-2 border-black py-2 px-3">{{ $model->module_code }}</td>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Credit</td>
+        <td class="border-2 border-black py-2 px-3">{{ $model->credits }}</td>
+      </tr>
+      <tr>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Module Level</td>
+        <td class="border-2 border-black py-2 px-3">{{ $model->module_level }}</td>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Semester of Delivery</td>
+        <td class="border-2 border-black py-2 px-3">{{ $model->semester_of_delivery }}</td>
+      </tr>
+      <tr>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Module Leader Name</td>
+        <td class="border-2 border-black py-2 px-3">{{ $model->module_leader }}</td>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Module Leader Email</td>
+        <td class="border-2 border-black py-2 px-3">{{ $model->module_leader_email }}</td>
+      </tr>
+      <tr>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Module Leader Academic Title</td>
+        <td class="border-2 border-black py-2 px-3">{{ $model->module_leader_academic_title }}</td>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Module Leader Qualification</td>
+        <td class="border-2 border-black py-2 px-3">{{ $model->module_leader_qualification }}</td>
+      </tr>
+      <tr>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Module Tutor Name</td>
+        <td class="border-2 border-black py-2 px-3">{{ $model->module_tutor_name }}</td>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Module Tutor Email</td>
+        <td class="border-2 border-black py-2 px-3">{{ $model->module_tutor_email }}</td>
+      </tr>
+      <tr>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Peer Reviewer Name</td>
+        <td class="border-2 border-black py-2 px-3">{{ $model->peer_reviewer_name }}</td>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Peer Reviewer Email</td>
+        <td class="border-2 border-black py-2 px-3">{{ $model->peer_reviewer_email }}</td>
+      </tr>
+      <tr>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Approval Date</td>
+        <td class="border-2 border-black py-2 px-3">{{ $model->approval_date }}</td>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Version Number</td>
+        <td class="border-2 border-black py-2 px-3">{{ $model->version_number }}</td>
+      </tr>
+      <tr>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Subject</td>
+        <td class="border-2 border-black py-2 px-3">{{ $model->subject->name }}</td>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Stage</td>
+        <td class="border-2 border-black py-2 px-3">{{ $model->stage->department->name }} {{ $model->stage->name }}</td>
+      </tr>
     </table>
+  </div>
+</div>
+
+
+
+
+
+<div class="flex items-center justify-center ">
+  <div class="bg-white p-6 rounded-lg  w-3/4">
+    <table class=" w-full">
+      <div class="bg-orange-200  p-4 border-2 border-black border-b-0">
+        <h1 class="text-blue-900 text-2xl font-bold text-center">Relation With Other Modules</h1>
+      </div>
+      <tr class="w-full ">
+
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl w-1/4 ">Pre-requisites</td>
+        <td class="border-2 border-black py-2 px-3  w-full"> {!! $model->co_requisites !!}
+        </td>
+
+      </tr>
+      <tr>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Co-requisites</td>
+        <td class="border-2 border-black py-2 px-3">{!! $model->pre_requisites !!}</td>
+
+      </tr>
+
+
+    </table>
+
+    <table class=" w-full">
+      <div class="bg-orange-200  p-4 border-2 border-black border-b-0 border-t-0">
+        <h1 class="text-blue-900 text-2xl font-bold text-center">Module Aims, Learning Outcomes and Indicative Contents
+        </h1>
+      </div>
+      <tr class="w-full ">
+
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl w-1/4 ">Module Aims</td>
+        <td class="border-2 border-black py-2 px-3  w-full"> {!! $model->module_aims !!}
+        </td>
+
+      </tr>
+      <tr>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Module Learning
+          Outcomes
+        </td>
+        <td class="border-2 border-black py-2 px-3"> {!!$model->module_learning_outcomes !!}</td>
+
+      </tr>
+      <tr>
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl">Indicative Contents
+        </td>
+        <td class="border-2 border-black py-2 px-3"> {!! $model->indicative_contents !!}</td>
+
+      </tr>
+
+
+    </table>
+
+    </table>
+
+    <table class=" w-full">
+      <div class="bg-orange-200  p-4 border-2 border-black border-b-0 border-t-0">
+        <h1 class="text-blue-900 text-2xl font-bold text-center">Learning and Teaching Strategies
+
+        </h1>
+      </div>
+      <tr class="w-full ">
+
+        <td class="bg-blue-100 border-2 border-black py-2 px-3 font-bold text-xl w-1/4 ">Strategies</td>
+        <td class="border-2 border-black py-2 px-3  w-full"> {!! $model->strategies !!}
+        </td>
+
+      </tr>
+
+
+
+    </table>
+  </div>
+</div>
+
+
+
+
+<div class="flex items-center justify-center ">
+  <div class="bg-white p-6 rounded-lg  w-3/4">
+    <table class=" w-full">
+  <div class="bg-orange-200  p-4 border-2 border-black border-b-0">
+        <h1 class="text-blue-900 text-2xl font-bold text-center">Learning and Teaching Resources
+
+        </h1>
+      </div>
+  <thead class="bg-gray-50">
+    <tr>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase  border-2 border-black"></th>
+      <th scope="col" class="px-6 py-3 text-center text-2xl font-bold bg-blue-100 text-black  border-2 border-black">Text</th>
+      <th scope="col" class="px-6 py-3 text-center text-2xl font-bold  bg-blue-100 text-black  border-2 border-black">Available in the Library?</th>
+    </tr>
+  </thead>
+  <tbody class="bg-white divide-y divide-gray-200 ">
+    <tr>
+      <td class="px-6 py-4  text-2xl font-bold bg-blue-100 text-gray-900 border-2 border-black">Required Texts</td>
+      <td class="px-6 py-4  text-sm text-black border-2 border-black">
+      {!! $model->required_texts !!}
+      </td>
+      <td class="px-6 py-4  text-sm text-red-600 border-2 border-black">No</td>
+    </tr>
+    <tr>
+      <td class="px-6 py-4 text-2xl font-bold bg-blue-100 text-gray-900 border-2 border-black">Recommended Texts</td>
+      <td class="px-6 py-4  text-sm text-black border-2 border-black">
+      {!! $model->recommended_texts !!}
+      </td>
+      <td class="px-6 py-4  text-sm text-red-600 border-2 border-black">No</td>
+    </tr>
+    <tr>
+      <td class="px-6 py-4  text-2xl font-bold bg-blue-100 text-gray-900 border-2 border-black">Websites</td>
+      <td class="px-6 py-4  text-sm text-black border-2 border-black">
+      {!! $model->websites !!}
+      </td>
+      <td class="px-6 py-4  text-sm text-red-600 border-2 border-black">No</td>
+    </tr>
+
+  </tbody>
+</table>
+
+</div>
+
+</div>
+
+
+
+<div class="flex items-center justify-center ">
+  <div class="bg-white p-6 rounded-lg  w-3/4">
+    <table class=" w-full">
+  <div class="bg-orange-200  p-4 border-2 border-black border-b-0">
+        <h1 class="text-blue-900 text-2xl font-bold text-center">Delivery Plan (Weekly Syllabus)
+
+
+        </h1>
+      </div>
+  <thead class="bg-gray-50">
+    <tr>
+      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase  border-2 border-black"></th>
+      <th scope="col" class="px-6 py-3 text-left text-2xl font-bold bg-blue-100 text-black  border-2 border-black">Material Covered</th>
+    </tr>
+  </thead>
+  <tbody class="divide-y">
+  <?php $count = 1; ?>
+  @foreach ($subjectContents as $content)
+      <tr class="">
+          <td class="border-2 border-black bg-blue-100 py-4 px-6 text-xl font-bold text-black whitespace-nowrap">
+            
+                  Week {{ $count }}
+          
+          </td>
+          <td class="border-2 border-black py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
+          @if($count == 8)
+          <div class="font-bold text-xl">
+            
+            Midterm Exam
+          </div>
+              @else
+              {{ $content->material_covered }}
+              @endif
+            
+          </td>
+      </tr>
+      <?php $count++; ?>
+      @if($count > 15) @break @endif
+  @endforeach
+</tbody>
+
+</table>
+
 </div>
 </div>
+<div class="flex items-center justify-center mt-8">
+  <button onclick="generatePDF()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    Generate PDF
+  </button>
+  <div id="spinner" class="hidden ml-4">
+    <svg class="animate-spin h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+  </div>
+</div>
 
-
-        <div class="">
-
-            <div class="container mx-auto text-center my-32">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-blue-600">Delivery Plan (Weekly
-                    Syllabus)</h5>
-                <!-- This is an example component -->
-                <div class="max-w-2xl mx-auto">
-
-                    <div class="flex flex-col">
-                        <div class="overflow-x-auto shadow-md sm:rounded-lg">
-                            <div class="inline-block min-w-full align-middle">
-                                <div class="overflow-hidden">
-                                    <table class="min-w-full divide-y table-fixed text-left">
-                                        <thead class="bg-blue-600">
-                                            <tr>
-                                                <th scope="col" class="p-4">
-                                                    <div class="flex items-center">
-                                                        <input id="checkbox-all" type="checkbox"
-                                                            class="w-4 h-4 bg-blue-200 text-blue-500 rounded-sm focus:text-blue-500 focus:border focus:bg-blue-500 focus:ring-2">
-                                                        <label for="checkbox-all" class="sr-only">checkbox</label>
-                                                    </div>
-                                                </th>
-                                                <th scope="col"
-                                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white">
-                                                    weekly
-                                                </th>
-                                                <th scope="col"
-                                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white">
-                                                    Week Material Covered
-                                                </th>
-                                                <th scope="col"
-                                                    class="py-3 px-6 text-xs font-medium tracking-wider text-right text-white">
-                                                    <x-popup :modelid="$model_id" :contents="$contents" />
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="bg-blue-600 divide-y">
-                                            <?php $count = 1; ?>
-                                            @foreach ($subjectContents as $content )
-
-                                            <tr class="bg-blue-300">
-                                                <td class="p-4 w-4">
-                                                    <div class="flex items-center">
-                                                        <input id="checkbox-table-1" type="checkbox"
-                                                            class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2">
-                                                        <label for="checkbox-table-1" class="sr-only">checkbox</label>
-                                                    </div>
-                                                </td>
-                                                <td class="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
-                                                    week {{ $count++ }}</td>
-                                                <td class="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
-                                                    {{ $content->material_covered }}</td>
-                                                <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                                    <form
-                                                        action="{{ route('plandelivery.destroy', ['DeliveryPlan' => $content->id]) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            class="text-red-600 dark:red-blue-500 font-bold hover:underline bg-transparent border-none cursor-pointer">Delete</button>
-                                                    </form>
-                                                    {{--
-                                                    <x-popupedit :contentt="$content->id" :contents="$contents" /> --}}
-                                                </td>
-                                            </tr>
-                                            @endforeach
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-        </div>
-        <div class="flex flex-col justify-center items-center gap-4 my-12">
-            <div class="text-center w-full md:w-2/4 min-h-52 mt-8 border test relative rounded-xl">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">Module Aims, Learning Outcomes and
-                    Indicative Contents</h5>
-
-                <div class="w-full">
-                    <table class="w-full mb-4">
-                        <thead class="w-full text-center ">
-                            <tr>
-                                <th scope="col"
-                                    class="py-3 px-6 text-sm font-bold tracking-wider text-left text-white uppercase">
-                                    - Module Aims
-                                </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-bold tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->module_aims !!}
-                                </th>
-                            </tr>
-                            <tr>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
-                                    - Module Learning Outcomes
-                                </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-bold tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->module_learning_outcomes !!}
-                                </th>
-                            </tr>
-                            <tr>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
-                                    - Indicative Contents
-                                </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->indicative_contents !!}
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-                    <a href="{{ route('model.aims', $model->id) }}"
-                        class="bg-white text-black font-bold py-2 px-12 rounded focus:outline-none focus:shadow-outline">Edit</a>
-                </div>
-            </div>
-
-            <div class="text-center mt-8 w-full md:w-2/4 h-52 test2 relative rounded-xl">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Relation With Other
-                    Modules</h5>
-
-                <div class="w-full relative">
-                    <table class="min-w-full divide-y divide-gray-200 mb-4">
-                        <thead class="w-full text-center relative">
-                            <tr>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
-                                    - Pre-requisites
-                                </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->pre_requisites !!}
-                                </th>
-                            </tr>
-                            <tr>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
-                                    - Co-requisites
-                                </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->co_requisites !!}
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-                    <a href="{{ route('model.related', $model->id) }}"
-                        class="bg-white text-black font-bold py-2 px-12 rounded focus:outline-none focus:shadow-outline">Edit</a>
-                </div>
-            </div>
-
-            <div class="text-center mt-8 w-full md:w-2/4 h-52 test3 relative rounded-xl">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Learning and Teaching
-                    Strategies</h5>
-
-                <div class="w-full relative">
-                    <table class="min-w-full divide-y divide-gray-200 mb-4">
-                        <thead class="w-full text-center">
-                            <tr>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
-                                    - Strategies
-                                </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->strategies !!}
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-                    <a href="{{ route('model.strategie', $model->id) }}"
-                        class="bg-white text-black font-bold py-2 px-12 rounded focus:outline-none focus:shadow-outline">Edit</a>
-                </div>
-            </div>
-
-            <div class="text-center mt-8 w-full md:w-2/4 h-52 test4 relative rounded-xl">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Learning and Teaching
-                    Resources</h5>
-
-                <div class="w-full relative">
-                    <table class="min-w-full divide-y divide-gray-200 mb-4">
-                        <thead class="w-full text-center">
-                            <tr>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
-                                    - Required Texts
-                                </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->required_texts !!}
-                                </th>
-                            </tr>
-                            <tr>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
-                                    - Recommended Texts
-                                </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->recommended_texts !!}
-                                </th>
-                            </tr>
-                            <tr>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
-                                    - Websites
-                                </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->websites !!}
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
-                </div>
-                <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-                    <a href="{{ route('model.resources', $model->id) }}"
-                        class="bg-white text-black font-bold py-2 px-12 rounded focus:outline-none focus:shadow-outline">Edit</a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="">
-
-        <div class="container mx-auto text-center my-32">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-blue-600">Module Evaluation</h5>
-            <!-- This is an example component -->
-            <div class="max-w-2xl mx-auto">
-
-                <div class="flex flex-col">
-                    <div class="overflow-x-auto shadow-md sm:rounded-lg">
-                        <div class="inline-block min-w-full align-middle">
-                            <div class="overflow-hidden">
-                                <table class="min-w-full divide-y table-fixed text-left">
-                                    <thead class="bg-blue-600">
-                                        <tr>
-
-                                            <th scope="col"
-                                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white">
-                                                Evaluation
-                                            </th>
-                                            <th scope="col"
-                                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white">
-                                                Number/Time
-                                            </th>
-                                            <th scope="col"
-                                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white">
-                                                Weight (Marks)
-                                            </th>
-                                            <th scope="col"
-                                                class="py-3 px-6 text-xs font-medium tracking-wider text-right text-white">
-                                                Week Due
-                                            </th>
-                                            <th scope="col"
-                                                class="py-3 px-6 text-xs font-medium tracking-wider text-right text-white">
-                                                Relevant Learning Outcome
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="bg-blue-600 divide-y">
-
-
-                                        @foreach ($module_evaluations as $evaluation )
-
-                                        <tr class="bg-blue-300">
-
-                                            <td class="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
-                                                {{ $evaluation->evaluation}}</td>
-                                            <td class="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
-                                                {{ $evaluation->number_time}}</td>
-                                            <td class="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
-                                                {{ $evaluation->weight_mark }}</td>
-                                            <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                                {{ $evaluation->week_due }}
-                                            </td>
-                                            <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                                {{ $evaluation->relevant_learning_outcome }}
-                                            </td>
-                                        </tr>
-                                        @endforeach
-
-                                    </tbody>
-                                </table>
-
-                                <div class=" p-6     bg-blue-300">
-                                    <a href="{{ route('model.evalution', $model->id) }}"
-                                        class="bg-white text-black font-bold py-2 px-12 rounded focus:outline-none focus:shadow-outline">Edit</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
 
 </x-app-layout>
 
-<style>
-    .first-section {
 
 
-        background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%);
-        margin: 10px;
-        padding: 15px 45px;
-        text-align: center;
-        text-transform: uppercase;
-        transition: 0.5s;
-        background-size: 200% auto;
-        color: white;
-        box-shadow: 0 0 20px #eee;
-        border-radius: 10px;
-        display: block;
-
-
-
-    }
-
-    .first-section:hover {
-        background-position: right center;
-        /* change the direction of the change here */
-        color: #fff;
-        text-decoration: none;
-    }
-
-
-    .secound-section {
-        background-image: linear-gradient(to right, #4b6cb7 0%, #182848 51%, #4b6cb7 100%);
-        margin: 10px;
-        padding: 15px 45px;
-        text-align: center;
-        text-transform: uppercase;
-        transition: 0.5s;
-        background-size: 200% auto;
-        color: white;
-        box-shadow: 0 0 20px #eee;
-        border-radius: 10px;
-        display: block;
-    }
-
-    .secound-section:hover {
-        background-position: right center;
-        /* change the direction of the change here */
-        color: #fff;
-        text-decoration: none;
-    }
-
-
-
-
-    .third-section {
-        background-image: linear-gradient(to right, #134E5E 0%, #71B280 51%, #134E5E 100%);
-        margin: 10px;
-        padding: 15px 45px;
-        text-align: center;
-        text-transform: uppercase;
-        transition: 0.5s;
-        background-size: 200% auto;
-        color: white;
-        box-shadow: 0 0 20px #eee;
-        border-radius: 10px;
-        display: block;
-    }
-
-    .third-section:hover {
-        background-position: right center;
-        /* change the direction of the change here */
-        color: #fff;
-        text-decoration: none;
-    }
-
-
-
-
-    .test {
-        background-image: linear-gradient(to right, #f46b45 0%, #eea849 51%, #f46b45 100%);
-        margin: 10px;
-        padding: 15px 45px;
-        text-align: center;
-        text-transform: uppercase;
-        transition: 0.5s;
-        background-size: 200% auto;
-        color: white;
-        box-shadow: 0 0 20px #eee;
-        border-radius: 10px;
-        display: block;
-    }
-
-    .test:hover {
-        background-position: right center;
-        /* change the direction of the change here */
-        color: #fff;
-        text-decoration: none;
-    }
-
-    .test2 {
-        background-image: linear-gradient(to right, #76b852 0%, #8DC26F 51%, #76b852 100%);
-        margin: 10px;
-        padding: 15px 45px;
-        text-align: center;
-        text-transform: uppercase;
-        transition: 0.5s;
-        background-size: 200% auto;
-        color: white;
-        box-shadow: 0 0 20px #eee;
-        border-radius: 10px;
-        display: block;
-    }
-
-    .test2:hover {
-        background-position: right center;
-        /* change the direction of the change here */
-        color: #fff;
-        text-decoration: none;
-    }
-
-
-    .test3 {
-        background-image: linear-gradient(to right, #56CCF2 0%, #2F80ED 51%, #56CCF2 100%);
-        margin: 10px;
-        padding: 15px 45px;
-        text-align: center;
-        text-transform: uppercase;
-        transition: 0.5s;
-        background-size: 200% auto;
-        color: white;
-        box-shadow: 0 0 20px #eee;
-        border-radius: 10px;
-        display: block;
-    }
-
-    .test3:hover {
-        background-position: right center;
-        /* change the direction of the change here */
-        color: #fff;
-        text-decoration: none;
-    }
-
-
-
-    .test4 {
-        background-image: linear-gradient(to right, #cb2d3e 0%, #ef473a 51%, #cb2d3e 100%);
-        margin: 10px;
-        padding: 15px 45px;
-        text-align: center;
-        text-transform: uppercase;
-        transition: 0.5s;
-        background-size: 200% auto;
-        color: white;
-        box-shadow: 0 0 20px #eee;
-        border-radius: 10px;
-        display: block;
-    }
-
-    .test4:hover {
-        background-position: right center;
-        /* change the direction of the change here */
-        color: #fff;
-        text-decoration: none;
-    }
-</style>
+</body>
+</html>
