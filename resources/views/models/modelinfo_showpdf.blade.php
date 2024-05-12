@@ -7,46 +7,51 @@
   <title>Module Descriptor</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
-<style>
-@media print {
-  #generatePDFButton.no-print {
-    display: none !important;
-  }
-}
 
-
-</style>
   <script>
     async function generatePDF() {
     try {
         const input = document.getElementById("contentToConvert");
+
         const options = {
-            scale: 3, // Higher scale for potentially better quality
+            scale: 3, // Set your desired zooming ratio here
             useCORS: true,
             logging: true, // Enable logging for debugging
         };
         const canvas = await html2canvas(input, options);
+
         const pdf = new jspdf.jsPDF('p', 'pt', 'a4');
+
+        // Dynamically determine image size based on content
+        const imgRatio = canvas.height / canvas.width;
         const pageWidth = pdf.internal.pageSize.getWidth();
-        
-        let posY = 0;
-        const addImageAndCheckHeight = () => {
-            const imgHeight = (canvas.width / pageWidth) * canvas.height;
-            pdf.addImage(canvas, 'PNG', 0, posY, pageWidth, imgHeight);
-            posY += imgHeight;
-            return posY >= pdf.internal.pageSize.getHeight();
-        };
-        
-        let pageIndex = 0;
-        while (true) {
+        const imageHeight = pageWidth * imgRatio;
+
+        // Split tables if they span across pages
+        const ctx = canvas.getContext('2d');
+        const tableElements = input.querySelectorAll("table");
+        tableElements.forEach(table => {
+            const tableBounds = table.getBoundingClientRect();
+            const tablePageStart = Math.floor((tableBounds.top - input.getBoundingClientRect().top) / pdf.internal.pageSize.getHeight());
+            const tablePageEnd = Math.floor((tableBounds.bottom - input.getBoundingClientRect().top) / pdf.internal.pageSize.getHeight());
+            if (tablePageEnd > tablePageStart) {
+                const tableTop = tablePageStart * pdf.internal.pageSize.getHeight() + pdf.internal.pageSize.getHeight() - tableBounds.top % pdf.internal.pageSize.getHeight();
+                ctx.beginPath();
+                ctx.rect(0, tableTop, canvas.width, tableBounds.bottom - tableTop);
+                ctx.clip();
+            }
+        });
+
+        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, pageWidth, imageHeight);
+
+        // Check if content is longer than one page, and add pages if needed.
+        let remainingHeight = imageHeight - pdf.internal.pageSize.getHeight();
+        while (remainingHeight > 0) {
             pdf.addPage();
-            const contentExceedsPage = addImageAndCheckHeight();
-            if (!contentExceedsPage) break;
-            // Start a new page
-            canvas.style.top = `-${pageIndex * pdf.internal.pageSize.getHeight()}px`;
-            pageIndex++;
+            pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, -pdf.internal.pageSize.getHeight(), pageWidth, imageHeight);
+            remainingHeight -= pdf.internal.pageSize.getHeight();
         }
-        
+
         pdf.save("descriptor.pdf");
     } catch (error) {
         console.error("Error generating PDF:", error);
@@ -513,7 +518,7 @@
             </tbody>
 
           </table>
-          <p class="text-md bg-red-200 balck-gray-600 border-2 border-black border-t-0 p-4">NB Decimal places above or below 0.5 will be rounded to the higher or lower full mark (for example a mark of 54.5 will be rounded to 55, whereas a mark of 54.4 will be rounded to 54. KOU has a policy NOT to condone "near-pass fails" so the only adjustment to marks awarded by the original marker(s) will be the automatic rounding outlined above.</p>
+          <p class="text-md bg-red-200 balck-gray-600 border-2 border-black border-t-0 ">NB Decimal places above or below 0.5 will be rounded to the higher or lower full mark (for example a mark of 54.5 will be rounded to 55, whereas a mark of 54.4 will be rounded to 54. KOU has a policy NOT to condone "near-pass fails" so the only adjustment to marks awarded by the original marker(s) will be the automatic rounding outlined above.</p>
         </div>
 
       </div>
@@ -523,11 +528,16 @@
 
 
 
-      <div class="flex items-center justify-center mt-8 ">
-      <button id="generatePDFButton" onclick="generatePDF()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded no-print">
-  Generate PDF
-</button>
-      
+      <div class="flex items-center justify-center mt-8">
+        <button onclick="generatePDF()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Generate PDF
+        </button>
+        <div id="spinner" class="hidden ml-4">
+          <svg class="animate-spin h-5 w-5 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        </div>
       </div>
 
 
