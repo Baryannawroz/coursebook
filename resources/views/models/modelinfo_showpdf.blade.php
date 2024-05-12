@@ -33,7 +33,7 @@
 
 <body>
 <x-app-layout>
-    <div id="contentToConvert">
+    <div id="contentToConvert" class="mt-8">
     <table class="flex justify-center items-center">
 
 <tr class=" ">
@@ -209,6 +209,46 @@
 
 
 
+>
+
+
+    <div class="flex items-center justify-center ">
+  <div class="bg-white p-6 rounded-lg  w-3/4">
+  <div class="bg-orange-200  p-4 border-2 border-black border-b-0">
+        <h1 class="text-blue-900 text-2xl font-bold text-center">Module Delivery
+
+        </h1>
+      </div>
+
+  <table class="w-full ">
+    <thead>
+      <tr>
+        <th class=" p-2 text-left bg-blue-200 border-2 border-black">  Lecture (hr/w)</th>
+        <th class="border-2 border-black p-2 text-left ">3<span class="border-1 border-black  bg-blue-200 py-2.5 mx-2 relative top-0.5 left-4">Lab (hr/w)</span> </th>
+        <th class="border-2 border-black p-2 text-left">2 <span class="border-1 border-black bg-blue-200 py-2.5 mx-2 relative top-0.5 left-4">Practical (hr/w)</span></th>
+        <th class="border-2 border-black p-2 text-left"> <span class="border-1 border-black bg-blue-200 py-2.5 mx-2 relative top-0.5 left-4">Tutorial (hr/w)</span></th>
+      </tr>
+    </thead>
+    <tbody>
+  
+      <tr >
+        <td class="border-2 border-black p-2 bg-blue-200 ">SSWL (hr/sem)</td> 
+        <td colspan="3" class="border-2 border-black p-2 text-left">70</td>
+      </tr>
+      <tr class="">
+        <td class="border-2 border-black p-2 bg-blue-200">USSWL (hr/sem)</td>
+        <td colspan="3" class="border-2 border-black p-2 text-left">42</td>
+      </tr>
+      <tr class="">
+        <td class="border-2 border-black p-2 bg-blue-200">Total workload (hr/sem)</td>
+        <td colspan="3" class="border-2 border-black p-2 text-left">112</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+
+
 
 <div class="flex items-center justify-center ">
   <div class="bg-white p-6 rounded-lg  w-3/4">
@@ -282,19 +322,14 @@
           
           </td>
           <td class="border-2 border-black py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
-          @if($count == 8)
-          <div class="font-bold text-xl">
-            
-            Midterm Exam
-          </div>
-              @else
+        
               {{ $content->material_covered }}
-              @endif
+              
             
           </td>
       </tr>
       <?php $count++; ?>
-      @if($count > 15) @break @endif
+      
   @endforeach
 </tbody>
 
@@ -302,6 +337,103 @@
 
 </div>
 </div>
+
+
+
+
+
+
+    <div class="flex items-center justify-center ">
+      
+      <div class="bg-white p-6 rounded-lg  w-3/4">
+      <h1 class="text-2xl font-semibold mb-4 text-center">APPENDIX:</h1>
+      <table class="w-full table-auto border-collapse border">
+      <div class="bg-yellow-200  p-4 border-2 border-black border-b-0">
+        <h1 class="text-black text-2xl font-bold text-center">Koya University 
+
+        </h1>
+      </div>
+      <div class="bg-yellow-200  p-4 border-2 border-black border-b-0">
+        <h1 class="text-black text-2xl font-bold text-center">Grading Scheme
+
+        </h1>
+      </div>
+        <thead>
+          <tr class="">
+            <th class="px-4 py-2 bg-gray-200 border-2 border-black ">Group</th>
+            <th class="px-4 py-2 bg-gray-200 border-2 border-black ">ECTS Grade</th>
+            <th class="px-4 py-2 bg-gray-200 border-2 border-black ">% of Marks</th>
+            <th class="px-4 py-2 bg-gray-200 border-2 border-black ">Definition</th>
+            <th class="px-4 py-2 bg-gray-200 border-2 border-black ">IRQ System</th>
+            <th class="px-4 py-2 bg-gray-200 border-2 border-black ">GPA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="px-4 py-2 border-2 border-black " rowspan="5">Success Group (50-100)</td>
+            <td class="px-4 py-2 border-2 border-black ">A - Excellent</td>
+            <td class="px-4 py-2 border-2 border-black">Best 10%</td>
+            <td class="px-4 py-2 border-2 border-black">Outstanding Performance</td>
+            <td class="px-4 py-2 border-2 border-black">90-100</td>
+            <td class="px-4 py-2 border-2 border-black">5</td>
+          </tr>
+          <tr> 
+            <td class="px-4 py-2 border-2 border-black">B - Very Good</td>
+            <td class="px-4 py-2 border-2 border-black">Next 25%</td>
+            <td class="px-4 py-2 border-2 border-black">Above average with some errors</td>
+            <td class="px-4 py-2 border-2 border-black">80-89</td>
+            <td class="px-4 py-2 border-2 border-black">4</td>
+          </tr> 
+           
+          <tr> 
+            <td class="px-4 py-2 border-2 border-black">C - Good</td>
+            <td class="px-4 py-2 border-2 border-black">Next 30%</td>
+            <td class="px-4 py-2 border-2 border-black">Sound work with notable errors</td>
+            <td class="px-4 py-2 border-2 border-black">70-79</td>
+            <td class="px-4 py-2 border-2 border-black">3</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 border-2 border-black">D - Satisfactory</td>
+            <td class="px-4 py-2 border-2 border-black">Next 25%</td>
+            <td class="px-4 py-2 -2 border-black">Fair but with major shortcomings</td>
+            <td class="px-4 py-2 border-2 border-black">60-69</td>
+            <td class="px-4 py-2 border-2 border-black">2</td>
+          </tr>
+          <tr>
+            <td class="px-4 py-2 border-2 border-black">E - Sufficient</td>
+            <td class="px-4 py-2 border-2 border-black">Next 10%</td>
+            <td class="px-4 py-2 border-2 border-black">Work meets minimum criteria</td>
+            <td class="px-4 py-2 border-2 border-black">50-59</td>
+            <td class="px-4 py-2 border-2 border-black">1</td>
+          </tr>
+          <tr class="">
+            <td class="px-4 py-2 border-2 border-black" rowspan="3">Fail Group (0-49)</td>
+            <td class="px-4 py-2 border-2 border-black">FX - Fail</td>
+            <td class="px-4 py-2 border-2 border-black">(45-49)</td>
+            <td class="px-4 py-2 border-2 border-black">More work required but credit awarded</td>
+            <td class="px-4 py-2 border-2 border-black">40-49</td>
+            <td class="px-4 py-2 border-2 border-black"></td> 
+          </tr>
+          <tr class="">
+            <td class="px-4 py-2 border-2 border-black">F - Fail</td>
+            <td class="px-4 py-2 border-2 border-black">(0-44)</td>
+            <td class="px-4 py-2 border-2 border-black">Considerable amount of work required</td>
+            <td class="px-4 py-2 border-2 border-black">0-44</td>
+            <td class="px-4 py-2 border-2 border-black"></td> 
+          </tr>
+        </tbody>
+      
+      </table>
+      <p class="text-md bg-red-200 balck-gray-600 border-2 border-black border-t-0 ">NB Decimal places above or below 0.5 will be rounded to the higher or lower full mark (for example a mark of 54.5 will be rounded to 55, whereas a mark of 54.4 will be rounded to 54. KOU has a policy NOT to condone "near-pass fails" so the only adjustment to marks awarded by the original marker(s) will be the automatic rounding outlined above.</p> 
+    </div>
+
+  </div>
+
+
+
+
+
+
 <div class="flex items-center justify-center mt-8">
   <button onclick="generatePDF()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
     Generate PDF
