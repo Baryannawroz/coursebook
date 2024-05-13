@@ -1,43 +1,45 @@
 <x-app-layout>
-    <div class="overflow-x-auto">
-        <input type="text" id="search" placeholder="Search..."
-            class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:border-blue-300 w-full max-w-xs mb-4">
-        <table id="userTable" class="table-auto min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-                <tr>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Name
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Email
-                    </th>
-                    <th scope="col"
-                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Role
-                    </th>
-                </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-                @foreach($users as $user)
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{ $user->name }}</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">{{ $user->email }}</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span
-                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full {{ $user->role == 1 ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800' }}">
-                            {{ $user->role == 1 ? 'Lecturer' : 'Admin' }}
-                        </span>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <div class="overflow-hidden border-gray-200 sm:rounded-lg pt-11">
+        <div class="overflow-x-auto">
+            <input type="text" id="search" placeholder="Search..."
+                class="px-4 py-2 border-2 border-gray-300 rounded-md w-full max-w-xs mb-4 ml-4">
+            <table id="userTable" class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-blue-600">
+                    <tr>
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                            Name
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                            Email
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
+                            Role
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach($users as $key => $user)
+                    <tr class="{{ $key % 2 == 0 ? 'bg-blue-300' : '' }}">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-gray-900">{{ $user->name }}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-900">{{ $user->email }}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span
+                                class="p-2 inline-flex text-xs leading-5 font-semibold rounded-md {{ $user->role == 1 ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800' }}">
+                                {{ $user->role == 1 ? 'Lecturer' : 'Admin' }}
+                            </span>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
     <script>
         const searchInput = document.getElementById('search');

@@ -38,84 +38,158 @@
     View PDF
 </a>
 
-        <div class="">
+<div class="">
 
-            <div class="container mx-auto text-center my-32">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-blue-600">Delivery Plan (Weekly
-                    Syllabus)</h5>
-                <!-- This is an example component -->
-                <div class="max-w-2xl mx-auto">
+<div class="container mx-auto text-center my-32">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-blue-600">Delivery Plan (Weekly Syllabus)</h5>
+    <!-- This is an example component -->
+    <div class="max-w-2xl mx-auto">
 
-                    <div class="flex flex-col">
-                        <div class="overflow-x-auto shadow-md sm:rounded-lg">
-                            <div class="inline-block min-w-full align-middle">
-                                <div class="overflow-hidden">
-                                    <table class="min-w-full divide-y table-fixed text-left">
-                                        <thead class="bg-blue-600">
-                                            <tr>
-                                                <th scope="col" class="p-4">
-                                                    <div class="flex items-center">
-                                                        <input id="checkbox-all" type="checkbox"
-                                                            class="w-4 h-4 bg-blue-200 text-blue-500 rounded-sm focus:text-blue-500 focus:border focus:bg-blue-500 focus:ring-2">
-                                                        <label for="checkbox-all" class="sr-only">checkbox</label>
-                                                    </div>
-                                                </th>
-                                                <th scope="col"
-                                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white">
-                                                    weekly
-                                                </th>
-                                                <th scope="col"
-                                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white">
-                                                    Week Material Covered
-                                                </th>
-                                                <th scope="col"
-                                                    class="py-3 px-6 text-xs font-medium tracking-wider text-right text-white">
-                                                    <x-popup :modelid="$model_id" :contents="$contents" />
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="bg-blue-600 divide-y">
-                                            <?php $count = 1; ?>
-                                            @foreach ($subjectContents as $content )
+        <div class="flex flex-col">
+            <div class="overflow-x-auto shadow-md sm:rounded-lg">
+                <div class="inline-block min-w-full align-middle">
+                    <div class="overflow-hidden">
+                        <table class="min-w-full divide-y table-fixed text-left">
+                            <thead class="bg-blue-600">
+                                <tr>
+                                    <th scope="col" class="p-4">
+                                        <div class="flex items-center">
+                                            <input id="checkbox-all" type="checkbox"
+                                                class="w-4 h-4 bg-blue-200 text-blue-500 rounded-sm focus:text-blue-500 focus:border focus:bg-blue-500 focus:ring-2">
+                                            <label for="checkbox-all" class="sr-only">checkbox</label>
+                                        </div>
+                                    </th>
+                                    <th scope="col"
+                                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white">
+                                        weekly
+                                    </th>
+                                    <th scope="col"
+                                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white">
+                                        Week Material Covered
+                                    </th>
+                                    <th scope="col"
+                                        class="py-3 px-6 text-xs font-medium tracking-wider text-right text-white">
+                                        <x-popup :modelid="$model_id" :contents="$contents" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $count = 1; ?>
+                                @foreach ($subjectContents as $content )
+                                <tr class="{{ $count % 2 == 0 ? 'bg-blue-300' : 'bg-blue-100    ' }}">
+                                    <td class="p-4 w-4">
+                                        <div class="flex items-center">
+                                            <input id="checkbox-table-{{ $count }}" type="checkbox"
+                                                class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2">
+                                            <label for="checkbox-table-{{ $count }}" class="sr-only">checkbox</label>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
+                                        week {{ $count++ }}</td>
+                                    <td class="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
+                                        {{ $content->material_covered }}</td>
+                                    <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
+                                        <form
+                                            action="{{ route('plandelivery.destroy', ['DeliveryPlan' => $content->id]) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="text-red-600 dark:red-blue-500 font-bold hover:underline bg-transparent border-none cursor-pointer">Delete</button>
+                                        </form>
+                                        {{--
+                                        <x-popupedit :contentt="$content->id" :contents="$contents" /> --}}
+                                    </td>
+                                </tr>
+                                @endforeach
 
-                                            <tr class="bg-blue-300">
-                                                <td class="p-4 w-4">
-                                                    <div class="flex items-center">
-                                                        <input id="checkbox-table-1" type="checkbox"
-                                                            class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 focus:ring-2">
-                                                        <label for="checkbox-table-1" class="sr-only">checkbox</label>
-                                                    </div>
-                                                </td>
-                                                <td class="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
-                                                    week {{ $count++ }}</td>
-                                                <td class="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
-                                                    {{ $content->material_covered }}</td>
-                                                <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                                    <form
-                                                        action="{{ route('plandelivery.destroy', ['DeliveryPlan' => $content->id]) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            class="text-red-600 dark:red-blue-500 font-bold hover:underline bg-transparent border-none cursor-pointer">Delete</button>
-                                                    </form>
-                                                    {{--
-                                                    <x-popupedit :contentt="$content->id" :contents="$contents" /> --}}
-                                                </td>
-                                            </tr>
-                                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+
+    </div>
+</div>
+</div>
+
+<div class="">
+
+<div class="container mx-auto text-center my-32">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-blue-600">Module Evaluation</h5>
+    <!-- This is an example component -->
+    <div class="max-w-2xl mx-auto">
+
+        <div class="flex flex-col">
+            <div class="overflow-x-auto shadow-md sm:rounded-lg">
+                <div class="inline-block min-w-full align-middle">
+                    <div class="overflow-hidden">
+                        <table class="min-w-full divide-y table-fixed text-left">
+                            <thead class="bg-blue-600">
+                                <tr>
+
+                                    <th scope="col"
+                                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white">
+                                        Evaluation
+                                    </th>
+                                    <th scope="col"
+                                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white">
+                                        Number/Time
+                                    </th>
+                                    <th scope="col"
+                                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white">
+                                        Weight (Marks)
+                                    </th>
+                                    <th scope="col"
+                                        class="py-3 px-6 text-xs font-medium tracking-wider text-right text-white">
+                                        Week Due
+                                    </th>
+                                    <th scope="col"
+                                        class="py-3 px-6 text-xs font-medium tracking-wider text-right text-white">
+                                        Relevant Learning Outcome
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($module_evaluations as $evaluation )
+                                <tr class="{{ $loop->iteration % 2 == 0 ? 'bg-blue-300' : 'bg-blue-100' }}">
+
+                                    <td class="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
+                                        {{ $evaluation->evaluation}}</td>
+                                    <td class="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
+                                        {{ $evaluation->number_time}}</td>
+                                    <td class="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
+                                        {{ $evaluation->weight_mark }}</td>
+                                    <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
+                                        {{ $evaluation->week_due }}
+                                    </td>
+                                    <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
+                                        {{ $evaluation->relevant_learning_outcome }}
+                                    </td>
+                                </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+
+                        <div class=" p-6     bg-blue-300">
+                            <a href="{{ route('model.evalution', $model->id) }}"
+                                class="bg-white text-black font-bold py-2 px-12 rounded focus:outline-none focus:shadow-outline">Edit</a>
                         </div>
                     </div>
-
 
                 </div>
             </div>
         </div>
+
+
+    </div>
+</div>
+</div>
+
+
         <div class="flex flex-col justify-center items-center gap-4 my-12">
             <div class="text-center w-full md:w-2/4 min-h-52 mt-8 border test relative rounded-xl">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">Module Aims, Learning Outcomes and
@@ -129,30 +203,21 @@
                                     class="py-3 px-6 text-sm font-bold tracking-wider text-left text-white uppercase">
                                     - Module Aims
                                 </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-bold tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->module_aims !!}
-                                </th>
+                            
                             </tr>
                             <tr>
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
                                     - Module Learning Outcomes
                                 </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-bold tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->module_learning_outcomes !!}
-                                </th>
+                            
                             </tr>
                             <tr>
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
                                     - Indicative Contents
                                 </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->indicative_contents !!}
-                                </th>
+                            
                             </tr>
                         </thead>
                     </table>
@@ -175,20 +240,14 @@
                                     class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
                                     - Pre-requisites
                                 </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->pre_requisites !!}
-                                </th>
+                              
                             </tr>
                             <tr>
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
                                     - Co-requisites
                                 </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->co_requisites !!}
-                                </th>
+                              
                             </tr>
                         </thead>
                     </table>
@@ -211,10 +270,7 @@
                                     class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
                                     - Strategies
                                 </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->strategies !!}
-                                </th>
+                            
                             </tr>
                         </thead>
                     </table>
@@ -237,30 +293,21 @@
                                     class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
                                     - Required Texts
                                 </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->required_texts !!}
-                                </th>
+                            
                             </tr>
                             <tr>
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
                                     - Recommended Texts
                                 </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->recommended_texts !!}
-                                </th>
+                          
                             </tr>
                             <tr>
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
                                     - Websites
                                 </th>
-                                <th scope="col"
-                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    {!! $model->websites !!}
-                                </th>
+                            
                             </tr>
                         </thead>
                     </table>
@@ -273,82 +320,7 @@
         </div>
 
     </div>
-    <div class="">
-
-        <div class="container mx-auto text-center my-32">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-blue-600">Module Evaluation</h5>
-            <!-- This is an example component -->
-            <div class="max-w-2xl mx-auto">
-
-                <div class="flex flex-col">
-                    <div class="overflow-x-auto shadow-md sm:rounded-lg">
-                        <div class="inline-block min-w-full align-middle">
-                            <div class="overflow-hidden">
-                                <table class="min-w-full divide-y table-fixed text-left">
-                                    <thead class="bg-blue-600">
-                                        <tr>
-
-                                            <th scope="col"
-                                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white">
-                                                Evaluation
-                                            </th>
-                                            <th scope="col"
-                                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white">
-                                                Number/Time
-                                            </th>
-                                            <th scope="col"
-                                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white">
-                                                Weight (Marks)
-                                            </th>
-                                            <th scope="col"
-                                                class="py-3 px-6 text-xs font-medium tracking-wider text-right text-white">
-                                                Week Due
-                                            </th>
-                                            <th scope="col"
-                                                class="py-3 px-6 text-xs font-medium tracking-wider text-right text-white">
-                                                Relevant Learning Outcome
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="bg-blue-600 divide-y">
-
-
-                                        @foreach ($module_evaluations as $evaluation )
-
-                                        <tr class="bg-blue-300">
-
-                                            <td class="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
-                                                {{ $evaluation->evaluation}}</td>
-                                            <td class="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
-                                                {{ $evaluation->number_time}}</td>
-                                            <td class="py-4 px-6 text-sm font-medium text-black whitespace-nowrap">
-                                                {{ $evaluation->weight_mark }}</td>
-                                            <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                                {{ $evaluation->week_due }}
-                                            </td>
-                                            <td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-                                                {{ $evaluation->relevant_learning_outcome }}
-                                            </td>
-                                        </tr>
-                                        @endforeach
-
-                                    </tbody>
-                                </table>
-
-                                <div class=" p-6     bg-blue-300">
-                                    <a href="{{ route('model.evalution', $model->id) }}"
-                                        class="bg-white text-black font-bold py-2 px-12 rounded focus:outline-none focus:shadow-outline">Edit</a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </div>
+  
 
 </x-app-layout>
 
