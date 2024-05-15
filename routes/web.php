@@ -58,6 +58,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/models', [ModelinfoController::class, 'index'])->name('models');
     Route::get('/Users', [UserController::class, 'index'])->name('users');
+    Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
+    Route::post('/user/{user}/update', [UserController::class, 'update'])->name('user.update');
     Route::get('/model/approved', [ModelinfoController::class, 'approved'])->name('model.approved');
     Route::get('/model/{modelinfo}/approving', [ModelinfoController::class, 'approving'])->name('model.approving');
     Route::get('/model/create', [ModelinfoController::class, 'create'])->name('model.create');
@@ -100,7 +102,7 @@ Route::get('/test', function () {
 use App\Http\Controllers\FormController;
 
 Route::post('/submit', [FacultyController::class, 'show'])->name('submit');
-// web.php or api.php 
+// web.php or api.php
 
 
 
