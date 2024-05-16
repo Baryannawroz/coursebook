@@ -2,7 +2,7 @@
     <div class="container mx-auto mt-8">
         <h2 class="text-center text-2xl font-semibold mb-6">Change Role</h2>
         <form action="{{ route('user.update', $user->id) }}" method="POST" class="max-w-md mx-auto">
-             @csrf
+            @csrf
             <div class="mb-4">
                 <label for="name" class="block text-sm font-medium text-gray-700">Name:</label>
                 <input type="text" id="name" name="name" value="{{ $user->name }}" readonly
@@ -12,9 +12,9 @@
                 <label for="role_id" class="block text-sm font-medium text-gray-700">Select Role:</label>
                 <select name="role_id"
                     class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-blue-500">
-                    <option value="1">Lecturer</option>
-                    <option value="2">Sarokayati</option>
-                    <option value="3">Admin</option>
+                    <option value="0">Lecturer</option>
+                    <option value="1">Sarokayati</option>
+                    <option value="2">Admin</option>
                 </select>
             </div>
             <button type="submit"

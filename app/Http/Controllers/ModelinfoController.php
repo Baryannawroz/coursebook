@@ -11,6 +11,7 @@ use App\Models\Module_evaluation;
 use App\Models\Stage;
 use App\Models\Subject;
 use App\Models\SubjectContent;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ModelinfoController extends Controller
@@ -20,6 +21,14 @@ class ModelinfoController extends Controller
      */
     public function index()
     {
+        
+        if(auth()->user()->role==0){
+            $modelinfos = Modelinfo::with('subject', 'stage.department')
+                ->where('user_id', auth()->user()->id)
+                ->get();
+
+        }
+        else
         $modelinfos = Modelinfo::with('subject', 'stage.department')->get();
 
         return view('models.modelinfo_index', compact('modelinfos'));
@@ -47,6 +56,13 @@ class ModelinfoController extends Controller
         $subjects = Subject::all();
         $stages = Stage::with('department')->get();
         return view('models.modelinfo_create', compact('subjects', 'stages'));
+    }
+    public function createPresindens()
+    {
+        $subjects = Subject::all();
+        $users = User::where('role', 0)->get();
+        $stages = Stage::with('department')->get();
+        return view('models.modelinfo_create', compact('subjects', 'stages','users'));
     }
 
     /**

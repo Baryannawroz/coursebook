@@ -1,9 +1,9 @@
 <style>
-    
+
     body {
-        padding-top: 64px; 
+        padding-top: 64px;
     }
-  
+
     nav {
         position: fixed;
         top: 0;
@@ -22,24 +22,32 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-20 items-center">
             <div class="flex">
-            
+
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                 <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if (auth()->user()->role==1)
+
                     <x-nav-link :href="route('stages')" :active="request()->routeIs('stages')">
                         {{ __('Stage') }}
                     </x-nav-link>
                     <x-nav-link :href="route('subjects')" :active="request()->routeIs('subjects')">
                         {{ __('Subject') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('model.create.presindens')" :active="request()->routeIs('model.create.presindens')">
+                        {{ __('Model S') }}
+                    </x-nav-link>
+                    @endif
                     <x-nav-link :href="route('models')" :active="request()->routeIs('models')">
                         {{ __('Model') }}
                     </x-nav-link>
+                    @if (auth()->user()->role==2)
                     <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
                         {{ __('User') }}
                     </x-nav-link>
+                    @endif
                 </div>
             </div>
 

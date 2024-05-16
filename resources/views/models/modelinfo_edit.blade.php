@@ -172,7 +172,7 @@
                 </div>
 
 
-                <div class="mb-4 md:basis-1/2 basis-full px-2">
+                <div class="mb-4 md:basis-1/2 basis-full px-2 hidden">
                     <label for="subject_id" class="block text-blue-600 font-medium mb-2">Subject:</label>
                     <select name="subject_id" id="subject_id"
                         class="border border-blue-200 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500">
@@ -187,7 +187,7 @@
                 </div>
 
                 <!-- Example for Select2 with stages -->
-                <div class="mb-4 md:basis-1/2 basis-full px-2">
+                <div class="mb-4 md:basis-1/2 basis-full px-2 hidden">
                     <label for="stage_id" class="block text-blue-600 font-medium mb-2">Stage:</label>
                     <select name="stage_id" id="stage_id"
                         class="border border-blue-200 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500">
@@ -200,7 +200,7 @@
                     @enderror
                 </div>
 
-              
+
 
                 <div class="mb-4 w-full px-2 flex justify-center">
     <!-- Add submit button -->

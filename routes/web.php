@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/faculty/{faculty}/edit', [FacultyController::class, 'edit'])->name('faculty.edit');
     Route::post('/faculty/{faculty}/update', [FacultyController::class, 'update'])->name('faculty.update');
 
-    Route::get('/stages', [StageController::class, 'index'])->name('stages');
+    Route::get('/stages', [StageController::class, 'index'])->name('stages')->middleware('sarokayati');
     Route::get('/stage/create', [StageController::class, 'create'])->name('stage.create');
     Route::post('/stage/store', [StageController::class, 'store'])->name('stage.store');
     Route::get('/stage/{stage}/edit', [StageController::class, 'edit'])->name('stage.edit');
@@ -57,12 +57,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/content/{subjectContent}/update', [SubjectContentController::class, 'update'])->name('content.update');
 
     Route::get('/models', [ModelinfoController::class, 'index'])->name('models');
-    Route::get('/Users', [UserController::class, 'index'])->name('users');
+    Route::get('/Users', [UserController::class, 'index'])->name('users')->middleware('role');
     Route::get('/user/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::post('/user/{user}/update', [UserController::class, 'update'])->name('user.update');
     Route::get('/model/approved', [ModelinfoController::class, 'approved'])->name('model.approved');
     Route::get('/model/{modelinfo}/approving', [ModelinfoController::class, 'approving'])->name('model.approving');
     Route::get('/model/create', [ModelinfoController::class, 'create'])->name('model.create');
+    Route::get('/model/create.presidens', [ModelinfoController::class, 'createPresindens'])->name('model.create.presindens');
     Route::post('/model/store', [ModelinfoController::class, 'store'])->name('model.store');
     Route::get('/model/{modelinfo}/edit', [ModelinfoController::class, 'edit'])->name('model.edit');
     Route::post('/model/{modelinfo}/update', [ModelinfoController::class, 'update'])->name('model.update');

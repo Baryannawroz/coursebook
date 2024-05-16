@@ -1,10 +1,12 @@
 <x-app-layout>
-<div class=" mt-6 flex justify-center">
+    @if(auth()->user()->role!==0)
+ <div class=" mt-6 flex justify-center">
+
         <x-add-model-button></x-add-model-button>
         <x-approved-model-button></x-approved-model-button>
     </div>
-<div class=" mt-6">
-    </div>
+@endif
+
 
 <div class="flex flex-col justify-center items-center mt-28">
     <div class="overflow-x-auto w-full">
