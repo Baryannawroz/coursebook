@@ -36,9 +36,7 @@
                     <x-nav-link :href="route('subjects')" :active="request()->routeIs('subjects')">
                         {{ __('Subject') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('model.create.presindens')" :active="request()->routeIs('model.create.presindens')">
-                        {{ __('Model S') }}
-                    </x-nav-link>
+                  
                     @endif
                     <x-nav-link :href="route('models')" :active="request()->routeIs('models')">
                         {{ __('Model') }}

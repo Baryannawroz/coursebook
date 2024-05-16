@@ -21,15 +21,13 @@ class ModelinfoController extends Controller
      */
     public function index()
     {
-        
-        if(auth()->user()->role==0){
+
+        if (auth()->user()->role == 0) {
             $modelinfos = Modelinfo::with('subject', 'stage.department')
                 ->where('user_id', auth()->user()->id)
                 ->get();
-
-        }
-        else
-        $modelinfos = Modelinfo::with('subject', 'stage.department')->get();
+        } else
+            $modelinfos = Modelinfo::with('subject', 'stage.department')->get();
 
         return view('models.modelinfo_index', compact('modelinfos'));
     }
@@ -54,15 +52,16 @@ class ModelinfoController extends Controller
     public function create()
     {
         $subjects = Subject::all();
+        $users = User::where('role', 0)->get();
         $stages = Stage::with('department')->get();
-        return view('models.modelinfo_create', compact('subjects', 'stages'));
+        return view('models.modelinfo_create', compact('subjects', 'stages', 'users'));
     }
     public function createPresindens()
     {
         $subjects = Subject::all();
         $users = User::where('role', 0)->get();
         $stages = Stage::with('department')->get();
-        return view('models.modelinfo_create', compact('subjects', 'stages','users'));
+        return view('models.modelinfo_create', compact('subjects', 'stages', 'users'));
     }
 
     /**
