@@ -66,8 +66,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/model/create.presidens', [ModelinfoController::class, 'createPresindens'])->name('model.create.presindens');
     Route::post('/model/store', [ModelinfoController::class, 'store'])->name('model.store');
     Route::get('/model/{modelinfo}/edit', [ModelinfoController::class, 'edit'])->name('model.edit');
+    Route::get('/model/{modelinfo}/{copy}/copy', [ModelinfoController::class, 'copy'])->name('model.copy');
     Route::post('/model/{modelinfo}/update', [ModelinfoController::class, 'update'])->name('model.update');
     Route::get('/model/{modelinfo}/show', [ModelinfoController::class, 'show'])->name('model.show');
+    Route::get('/model/{modelinfo}/{subject_id}/show', [ModelinfoController::class, 'sameshow'])->name('model.sameshow');
     Route::get('/modelpdf/{modelinfo}/show', [ModelinfoController::class, 'showpdf'])->name('modelpdf.show');
 
     Route::get('/model/{modelinfo}/related', [ModelinfoController::class, 'related'])->name('model.related');

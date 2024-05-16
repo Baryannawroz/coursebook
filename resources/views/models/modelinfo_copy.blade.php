@@ -59,14 +59,13 @@
                                         <circle cx="12" cy="12" r="4" />
                                     </svg>
                                 </a>
-                                <a
-                                    href="{{ route('model.sameshow', [$model->id, 'subject_id' => $model->subject_id]) }}">
+                                <a href="{{ route('model.copy', [$model->id, 'copy' => $id]) }}">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px"
                                         viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1"
                                         stroke-linecap="round" stroke-linejoin="miter">
-                                        <!-- Changed path to represent list -->
-                                        <path d="M3,6h18M3,12h18M3,18h18" />
-                                    </svg> </a>
+                                        <!-- Changed path to represent a copy icon -->
+                                        <path d="M10,2h8v8h-8zM6,6h8v8h-8z" />
+                                    </svg></a>
 
                             </div>
                         </td>

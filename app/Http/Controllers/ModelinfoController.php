@@ -31,6 +31,17 @@ class ModelinfoController extends Controller
 
         return view('models.modelinfo_index', compact('modelinfos'));
     }
+    public function sameshow($id, $subject_id)
+    {
+
+
+        $modelinfos = Modelinfo::with('subject', 'stage.department')
+            ->where('subject_id', $subject_id)
+            ->get();
+
+
+        return view('models.modelinfo_copy', compact('modelinfos', 'id'));
+    }
     public function approved()
     {
         $modelinfos = Modelinfo::with('subject', 'stage.department')
@@ -38,6 +49,42 @@ class ModelinfoController extends Controller
             ->get();
 
         return view('models.modelinfo_approved', compact('modelinfos'));
+    }
+    public function copy(Modelinfo $modelinfo, $copy)
+    {
+        $newModuleInfo = Modelinfo::find($copy);
+        $newModuleInfo->module_type = $modelinfo->module_type;
+        $newModuleInfo->module_code = $modelinfo->module_code;
+        $newModuleInfo->credits = $modelinfo->credits;
+        $newModuleInfo->module_leader = $modelinfo->module_leader;
+        $newModuleInfo->module_level = $modelinfo->module_level;
+        $newModuleInfo->semester_of_delivery = $modelinfo->semester_of_delivery;
+        $newModuleInfo->administering_department = $modelinfo->administering_department;
+        $newModuleInfo->faculty = $modelinfo->faculty;
+        $newModuleInfo->module_leader_email = $modelinfo->module_leader_email;
+        $newModuleInfo->module_leader_academic_title = $modelinfo->module_leader_academic_title;
+        $newModuleInfo->module_leader_qualification = $modelinfo->module_leader_qualification;
+        $newModuleInfo->module_tutor_name = $modelinfo->module_tutor_name;
+        $newModuleInfo->module_tutor_email = $modelinfo->module_tutor_email;
+        $newModuleInfo->peer_reviewer_name = $modelinfo->peer_reviewer_name;
+        $newModuleInfo->peer_reviewer_email = $modelinfo->peer_reviewer_email;
+        $newModuleInfo->approval_date = $modelinfo->approval_date;
+        $newModuleInfo->version_number = $modelinfo->version_number;
+        $newModuleInfo->module_learning_outcomes = $modelinfo->module_learning_outcomes;
+        $newModuleInfo->indicative_contents = $modelinfo->indicative_contents;
+        $newModuleInfo->module_aims = $modelinfo->module_aims;
+        $newModuleInfo->strategies = $modelinfo->strategies;
+        $newModuleInfo->required_texts = $modelinfo->required_texts;
+        $newModuleInfo->recommended_texts = $modelinfo->recommended_texts;
+        $newModuleInfo->websites = $modelinfo->websites;
+        $newModuleInfo->subject_id = $modelinfo->subject_id;
+        $newModuleInfo->co_requisites = $modelinfo->co_requisites;
+        $newModuleInfo->pre_requisites = $modelinfo->pre_requisites;
+        $newModuleInfo->approved = $modelinfo->approved;
+        $newModuleInfo->save();
+    
+        return redirect()->route('models');
+
     }
     public function approving(Modelinfo $modelinfo)
     {
