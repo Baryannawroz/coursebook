@@ -1,17 +1,38 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+
+    <div>
+
+        <div class="flex flex-wrap mt-6 pointer">
+
+            <div class="w-full md:w-1/3 px-2 my-4">
+
+                <div class="p-6 first-section rounded-lg shadow transition duration-300 ease-in-out text-center">
+
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">Subject</h5>
+                    {{-- <p class="font-normal text-white">{{ $model->subject->name }}</p> --}}
+                </div>
+            </div>
+            <div class="w-full md:w-1/3 px-2 my-4">
+
+                <div class="p-6 rounded-lg shadow secound-section transition duration-300 ease-in-out pointer text-center">
+
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">Department & stage
+                    </h5>
+                    {{-- <p class="font-normal text-white">{{ $model->stage->department->name ."/".$model->stage->name}}</p> --}}
+                </div>
+            </div>
+            <div class="w-full md:w-1/3 px-2 my-4">
+
+                <div class="p-6 rounded-lg shadow third-section transition duration-300 ease-in-out pointer text-center">
+
+                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-white">Lecturer</h5>
+                    {{-- <p class="font-normal text-white">{{ $model->module_leader}}</p> --}}
                 </div>
             </div>
         </div>
+
     </div>
+
+
 </x-app-layout>

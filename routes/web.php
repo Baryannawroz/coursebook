@@ -10,6 +10,9 @@ use App\Http\Controllers\SubjectContentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\UserController;
 use App\Models\DeliveryPlan;
+use App\Models\Department;
+use App\Models\Modelinfo;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +21,23 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $totalModelinfos = Modelinfo::count();
+    $totalSubject= Subject::count();
+    $totaldepartment= Department::count();
+
+    if(auth()->user()->role==0){
+        $modelinfo = Modelinfo::latest()->with('subject', 'stage.department')
+            ->where('user_id', auth()->user()->id) // Replace 'column_name' with your actual column
+            ->take(5)
+            ->get();
+
+
+    }
+    else {
+        $modelinfo =  Modelinfo::latest()->take(5)->get();
+
+    }
+    return view('dashboard',compact('modelinfo','totalModelinfos','totalSubject','totaldepartment'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

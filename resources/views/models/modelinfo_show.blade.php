@@ -32,14 +32,15 @@
             </div>
         </div>
 
+    </div>
         <div class="flex justify-center"></div>
 <a href="{{ route('modelpdf.show',  $model->id) }}"
     class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
     View PDF
 </a>
-
 <div class="">
 
+<x-add-subject-contents-button></x-add-subject-button>
 <div class="container mx-auto text-center my-32">
     <h5 class="mb-2 text-2xl font-bold tracking-tight text-blue-600">Delivery Plan (Weekly Syllabus)</h5>
     <!-- This is an example component -->
@@ -203,21 +204,21 @@
                                     class="py-3 px-6 text-sm font-bold tracking-wider text-left text-white uppercase">
                                     - Module Aims
                                 </th>
-                            
+
                             </tr>
                             <tr>
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
                                     - Module Learning Outcomes
                                 </th>
-                            
+
                             </tr>
                             <tr>
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
                                     - Indicative Contents
                                 </th>
-                            
+
                             </tr>
                         </thead>
                     </table>
@@ -240,14 +241,14 @@
                                     class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
                                     - Pre-requisites
                                 </th>
-                              
+
                             </tr>
                             <tr>
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
                                     - Co-requisites
                                 </th>
-                              
+
                             </tr>
                         </thead>
                     </table>
@@ -270,7 +271,7 @@
                                     class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
                                     - Strategies
                                 </th>
-                            
+
                             </tr>
                         </thead>
                     </table>
@@ -293,21 +294,21 @@
                                     class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
                                     - Required Texts
                                 </th>
-                            
+
                             </tr>
                             <tr>
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
                                     - Recommended Texts
                                 </th>
-                          
+
                             </tr>
                             <tr>
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-bold tracking-wider text-left text-white uppercase">
                                     - Websites
                                 </th>
-                            
+
                             </tr>
                         </thead>
                     </table>
@@ -320,7 +321,7 @@
         </div>
 
     </div>
-  
+
 
 </x-app-layout>
 
