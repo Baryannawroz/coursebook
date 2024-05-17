@@ -1,14 +1,14 @@
 <x-app-layout>
-    <div class="flex items-center justify-center h-screen bg-gray-100">
-        <div class="bg-blue-600 p-6 rounded-lg shadow-md w-full max-w-md">
-            <h1 class="text-2xl font-bold mb-4 text-center text-white">Update Stage</h1>
-
-            <form action="{!! route('stage.update',$stage->id) !!}" method="POST" class="mt-8 space-y-6">
-                @csrf
+    <div class="flex items-center justify-center h-screen ">
+      <div class="bg-blue-600 p-6 rounded-lg shadow-md w-3/4 h-3/4 flex justify-center items-center">
+        
+        <form action="{!! route('stage.update',$stage->id) !!}" method="POST" class="  mt-8 space-y-6 w-3/4 flex-col justify-center items-center">
+          @csrf
+          <h1 class="text-2xl font-bold mb-8 text-center text-white">Update Stage</h1>
 
                 <div class="mb-4">
                     <input type="text" name="name" id="name" value="{{ $stage->name }}" placeholder="please enter name"
-                        class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500"
+                        class="border border-gray-300 rounded-lg py-4 px-3 w-full focus:outline-none focus:border-blue-500"
                         required>
                     @error('name')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -17,7 +17,7 @@
 
                 <div class="mb-4">
                     <input type="text" name="code" id="code" value="{{ $stage->code }}" placeholder="please enter code"
-                        class=" border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none    focus:border-blue-500"
+                        class=" border border-gray-300 rounded-lg py-4 px-3 w-full focus:outline-none    focus:border-blue-500"
                         required>
                     @error('code')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -26,10 +26,10 @@
 
                 <div class="mb-4">
                     <select name="department_id" id="department_id" required placeholder="please select department"
-                        class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500">
+                        class="border border-gray-300 rounded-lg py-4 px-3 w-full focus:outline-none focus:border-blue-500">
 
                         @foreach($departments as $department)
-                        <option {!! $stage->id == $department->department_id ? 'selected' : '' !!} value="{{ $department->id
+                        <option  {!! $stage->id == $department->department_id ? 'selected' : '' !!} value="{{ $department->id
                             }}">{{ $department->name }}</option>
                         @endforeach
                     </select>
