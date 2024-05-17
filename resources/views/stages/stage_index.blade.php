@@ -6,17 +6,17 @@
 <x-add-button>
   </x-add-button>
 
-  <div class="flex justify-center items-center  mt-28">
+  <div class="  mt-28">
     <div class="overflow-x-auto">
         <table class="table-auto min-w-full divide-y divide-gray-200">
             <thead class="bg-blue-600">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">#</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Faculty Name</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Department Name</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Stage Name</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Code</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Actions</th>
+                    <th class="px-6 py-5 text-left text-sm font-bold text-white uppercase tracking-wider">#</th>
+                    <th class="px-6 py-5 text-left text-sm font-bold text-white uppercase tracking-wider">Faculty Name</th>
+                    <th class="px-6 py-5 text-left text-sm font-bold text-white uppercase tracking-wider">Department Name</th>
+                    <th class="px-6 py-5 text-left text-sm font-bold text-white uppercase tracking-wider">Stage Name</th>
+                    <th class="px-6 py-5 text-left text-sm font-bold text-white uppercase tracking-wider">Code</th>
+                    <th class="px-6 py-5 text-left text-sm font-bold text-white uppercase tracking-wider">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -25,12 +25,12 @@
                 @endphp
                 @foreach($stages as $stage)
                 <tr class="{{ $count % 2 == 0 ? 'bg-blue-200' : '' }}">
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $count++ }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $stage->department->faculty->name }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $stage->department->name }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $stage->name }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $stage->code }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="px-6 py-6 whitespace-nowrap">{{ $count++ }}</td>
+                    <td class="px-6 py-6 whitespace-nowrap">{{ $stage->department->faculty->name }}</td>
+                    <td class="px-6 py-6 whitespace-nowrap">{{ $stage->department->name }}</td>
+                    <td class="px-6 py-6 whitespace-nowrap">{{ $stage->name }}</td>
+                    <td class="px-6 py-6 whitespace-nowrap">{{ $stage->code }}</td>
+                    <td class="px-6 py-6 whitespace-nowrap">
                         <a href="{{ route('stage.edit', $stage->id) }}" class="text-blue-500 hover:text-blue-600 transition-colors duration-300">
                   
 
