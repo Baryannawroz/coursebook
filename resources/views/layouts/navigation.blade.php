@@ -42,7 +42,7 @@
 
                     @endif
                     <x-nav-link :href="route('models')" :active="request()->routeIs('models')">
-                        {{ __('Model') }}
+                        {{ __('Module') }}
                     </x-nav-link>
                     @if (auth()->user()->role==2)
                     <x-nav-link :href="route('users')" :active="request()->routeIs('users')">

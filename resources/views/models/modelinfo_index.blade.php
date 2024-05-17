@@ -14,8 +14,7 @@
                 <thead class="bg-blue-600">>
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">#</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">Module
-                            Title</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">Luctuer</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">Subject
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">
@@ -28,10 +27,12 @@
                     </class=>
                 <tbody class="divide-y divide-gray-200">
                     @php $count = 1; @endphp
+
                     @foreach($modelinfos as $model)
+
                     <tr class="{{ $count % 2 == 0 ? 'bg-blue-200' : 'bg-white' }}">
                         <td class="px-6 py-4 whitespace-nowrap">{{ $count++ }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $model->module_title }}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{ $model->user->name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $model->subject->name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $model->stage->department->name }}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{ $model->stage->name }}</td>

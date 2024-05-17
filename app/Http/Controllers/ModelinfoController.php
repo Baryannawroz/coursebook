@@ -23,11 +23,11 @@ class ModelinfoController extends Controller
     {
 
         if (auth()->user()->role == 0) {
-            $modelinfos = Modelinfo::with('subject', 'stage.department')
+            $modelinfos = Modelinfo::with('subject', 'user', 'stage.department')
                 ->where('user_id', auth()->user()->id)
                 ->get();
         } else
-            $modelinfos = Modelinfo::with('subject', 'stage.department')->get();
+            $modelinfos = Modelinfo::with('subject', 'user', 'stage.department')->get();
 
         return view('models.modelinfo_index', compact('modelinfos'));
     }
@@ -82,7 +82,7 @@ class ModelinfoController extends Controller
         $newModuleInfo->pre_requisites = $modelinfo->pre_requisites;
         $newModuleInfo->approved = $modelinfo->approved;
         $newModuleInfo->save();
-    
+
         return redirect()->route('models');
 
     }
