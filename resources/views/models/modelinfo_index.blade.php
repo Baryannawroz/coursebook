@@ -14,7 +14,8 @@
                 <thead class="bg-blue-600">>
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">#</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">Luctuer</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">Lecturer
+                        </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">Subject
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">
