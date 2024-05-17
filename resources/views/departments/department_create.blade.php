@@ -1,15 +1,15 @@
 <x-app-layout>
     <div class="flex items-center justify-center h-screen bg-gray-100">
-        <div class="bg-blue-600 p-8 rounded-lg w-full max-w-md">
-            <h1 class="text-2xl font-bold mb-4 text-center text-white">Create New Apartment</h1>
-            <h6 class="text-center w-full text-white">Please Fill information below</h6>
-
-            <form action="{!! route('department.store') !!}" method="POST" class="mt-8 space-y-6">
-                @csrf
+        <div class="bg-blue-600 p-6 rounded-lg shadow-md w-3/4 h-3/4 flex justify-center items-cente">
+          
+          <form action="{!! route('department.store') !!}" method="POST" class="mt-8 space-y-6 w-3/4 flex-col justify-center items-center">
+            @csrf
+            <h1 class="text-5xl font-bold mb-4 text-center text-white">Create New Apartment</h1>
+            <h6 class="text-center text-xl w-full text-white">Please Fill information below</h6>
 
                 <div class="mb-4">
                     <input type="text" name="name" id="name" placeholder="please enter name"
-                        class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500"
+                        class="border border-gray-300 rounded-lg py-4 px-3 w-full focus:outline-none focus:border-blue-500"
                         required>
                     @error('name')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -18,7 +18,7 @@
 
                 <div class="mb-4">
                     <input type="text" name="code" id="code" placeholder="please enter code"
-                        class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500"
+                        class="border border-gray-300 rounded-lg py-4 px-3 w-full focus:outline-none focus:border-blue-500"
                         required>
                     @error('code')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -27,7 +27,7 @@
 
                 <div class="mb-4">
                     <select name="faculty_id" id="faculty_id" required placeholder="please select faculty" 
-                        class="border border-gray-300 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500">
+                        class="border border-gray-300 rounded-lg py-4 px-3 w-full focus:outline-none focus:border-blue-500">
 
                         @foreach($faculties as $faculty)
                         <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
