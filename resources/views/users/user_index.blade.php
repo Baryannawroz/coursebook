@@ -34,11 +34,12 @@
                             <div class="text-sm text-gray-900">{{ $user->email }}</div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <span
-                                class="p-2 inline-flex text-xs leading-5 font-semibold rounded-md {{ $user->role == 1 ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800' }}">
-                                {{ $user->role == 1 ? 'Lecturer' : 'Admin' }}
-                            </span>
-                        </td>
+                        <span class="min-w-14 border text-center p-2 inline-flex justify-center text-xs relative right-9 leading-5 font-semibold rounded-md {{ $user->role == 0 ? 'bg-red-100 text-red-800' : ($user->role == 1 ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800') }}" style="width: 140px; height: 40px;">
+    {{ $user->role == 0 ? 'Lecturer' : ($user->role == 1 ? 'Head Of Department' : 'Admin') }}
+</span>
+
+</td>
+
                         <td class="px-6 py-4 whitespace-nowrap">
                            <a href="{{ route('user.edit', $user->id) }}" class="text-blue-500 hover:text-blue-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="feather feather-edit" fill="none" height="24" stroke="currentColor"
