@@ -2,7 +2,7 @@
     <div class="flex items-center justify-center h-screen ">
       <div class="bg-blue-600 p-6 rounded-lg shadow-md w-3/4 h-3/4 flex justify-center items-center">
         
-        <form action="{!! route('stage.update',$stage->id) !!}" method="POST" class="  mt-8 space-y-6 w-2/4 flex-col justify-center items-center">
+        <form action="{!! route('stage.update',$stage->id) !!}" method="POST" class="  mt-8 space-y-6 w-3/4 flex-col justify-center items-center">
           @csrf
           <h1 class="text-2xl font-bold mb-8 text-center text-white">Update Stage</h1>
 
