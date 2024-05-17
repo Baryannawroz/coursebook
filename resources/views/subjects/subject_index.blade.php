@@ -4,15 +4,15 @@
         <x-add-subject-button></x-add-subject-button>
     </div>
 
-    <div class="flex flex-col-reverse justify-center items-center mt-28">
+    <div class="r mt-28">
         <div class="overflow-x-auto">
             <table class="table-auto min-w-full divide-y divide-gray-200">
                 <thead class="bg-blue-600">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">#</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Subject Name</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Subject Code</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Actions</th>
+                        <th class="px-6 py-5 text-left text-xs font-bold text-white uppercase tracking-wider">#</th>
+                        <th class="px-6 py-5 text-left text-xs font-bold text-white uppercase tracking-wider">Subject Name</th>
+                        <th class="px-6 py-5 text-left text-xs font-bold text-white uppercase tracking-wider">Subject Code</th>
+                        <th class="px-6 py-5 text-left text-xs font-bold text-white uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -21,10 +21,10 @@
                     @endphp
                     @foreach($subjects as $subject)
                     <tr class="{{ $count % 2 == 0 ? 'bg-blue-200' : '' }}">
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $count++ }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $subject->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $subject->code }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-6 whitespace-nowrap">{{ $count++ }}</td>
+                        <td class="px-6 py-6 whitespace-nowrap">{{ $subject->name }}</td>
+                        <td class="px-6 py-6 whitespace-nowrap">{{ $subject->code }}</td>
+                        <td class="px-6 py-6 whitespace-nowrap">
                             <a href="{{ route('subject.edit', $subject->id) }}" class="text-blue-500 hover:text-blue-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="feather feather-edit" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24">
                                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>

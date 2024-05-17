@@ -1,6 +1,6 @@
 <x-app-layout>
-    <div class="flex items-center justify-center h-screen bg-gray-100">
-        <div class="bg-blue-600 p-6 rounded-lg shadow-md w-3/4 h-3/4 flex justify-center items-cente">
+    <div class="flex items-center justify-center h-screen ">
+        <div class="bg-blue-600 p-6 rounded-lg shadow-md w-3/4 h-3/4 flex justify-center items-center">
           
           <form action="{!! route('department.store') !!}" method="POST" class="mt-8 space-y-6 w-3/4 flex-col justify-center items-center">
             @csrf

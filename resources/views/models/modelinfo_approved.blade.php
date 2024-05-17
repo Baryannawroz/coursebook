@@ -1,13 +1,12 @@
 <x-app-layout>
-<div class=" mt-6 flex justify-center">
-        <x-add-model-button></x-add-model-button>
-        <x-approved-model-button></x-approved-model-button>
-    </div>
-<div class=" mt-6">
-    </div>
+
+
 
 <div class="flex flex-col justify-center items-center mt-28">
-    <div class="overflow-x-auto w-full">
+    <div class=" w-full">
+    <div class=" mt-6 flex justify-center">
+<h1 class="text-4xl font-bold mb-4 text-center text-blue-600">Model Approvement</h1>
+    </div>
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-blue-600">>
                 <tr >
