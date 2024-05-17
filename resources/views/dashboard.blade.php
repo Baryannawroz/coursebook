@@ -1,5 +1,40 @@
 <x-app-layout>
 
+    @if(auth()->user()->role == 0)
+        {{-- Lecturer's dashboard --}}
+        <div class="mt-24">
+            <div class="flex justify-center items-center">
+                <div class="btn-grad">
+                    <h1 class="text-3xl font-bold mb-4">Welcome, {{ auth()->user()->name }}</h1>
+                    <p class="text-lg">You are logged in as a lecturer.</p>
+                    
+                </div>
+            </div>
+        </div>
+    @elseif(auth()->user()->role == 1)
+        {{-- Head of Department's dashboard --}}
+        <div class="mt-24">
+            <div class="flex justify-center items-center">
+                <div class="btn-grad">
+                    <h1 class="text-3xl font-bold mb-4">Welcome, {{ auth()->user()->name }}</h1>
+                    <p class="text-lg">You are logged in as the head of department.</p>
+                  
+                </div>
+            </div>
+        </div>
+    @elseif(auth()->user()->role == 2)
+        {{-- Admin's dashboard --}}
+        <div class="mt-24">
+            <div class="flex justify-center items-center">
+                <div class="btn-grad">
+                    <h1 class="text-3xl font-bold mb-4">Welcome, {{ auth()->user()->name }}</h1>
+                    <p class="text-lg">You are logged in as an admin.</p>
+                    <!-- Include specific content for Admin -->
+                </div>
+            </div>
+        </div>
+    @endif
+
 
     <div>
 
@@ -39,16 +74,16 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-blue-600">>
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">#</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">Lecturer
+                        <th class="px-6 py-5 text-left text-xs font-medium text-white uppercase tracking-wide">#</th>
+                        <th class="px-6 py-5 text-left text-xs font-medium text-white uppercase tracking-wide">Lecturer
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">Subject
+                        <th class="px-6 py-5 text-left text-xs font-medium text-white uppercase tracking-wide">Subject
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">
+                        <th class="px-6 py-5 text-left text-xs font-medium text-white uppercase tracking-wide">
                             Department</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">Stage
+                        <th class="px-6 py-5 text-left text-xs font-medium text-white uppercase tracking-wide">Stage
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">Actions
+                        <th class="px-6 py-5 text-left text-xs font-medium text-white uppercase tracking-wide">Actions
                         </th>
                     </tr>
                     </class=>
@@ -58,12 +93,12 @@
                     @foreach($modelinfos as $model)
 
                     <tr class="{{ $count % 2 == 0 ? 'bg-blue-200' : 'bg-white' }}">
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $count++ }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $model->user->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $model->subject->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $model->stage->department->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $model->stage->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-6 whitespace-nowrap">{{ $count++ }}</td>
+                        <td class="px-6 py-6 whitespace-nowrap">{{ $model->user->name }}</td>
+                        <td class="px-6 py-6 whitespace-nowrap">{{ $model->subject->name }}</td>
+                        <td class="px-6 py-6 whitespace-nowrap">{{ $model->stage->department->name }}</td>
+                        <td class="px-6 py-6 whitespace-nowrap">{{ $model->stage->name }}</td>
+                        <td class="px-6 py-6 whitespace-nowrap">
                             <div class="flex items-center space-x-4">
                                 <!-- Edit button -->
                                 <a href="{{ route('model.edit', $model->id) }}" class="text-blue-500 hover:text-blue-600">
@@ -105,6 +140,38 @@
 
 </x-app-layout>
 <style>
+
+
+
+
+
+         
+         
+         
+         
+.btn-grad {
+            background-image: linear-gradient(to right, #517fa4 0%, #243949  51%, #517fa4  100%);
+            margin: 10px;
+            padding: 20px 50px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;            
+            box-shadow: 0 0 20px #eee;
+            border-radius: 10px;
+            display: block;
+          }
+
+          .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+         
+
+
+
 .first-section {
 
 
