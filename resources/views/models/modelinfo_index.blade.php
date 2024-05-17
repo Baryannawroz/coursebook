@@ -11,18 +11,18 @@
     <div class="flex flex-col justify-center items-center mt-28">
         <div class="overflow-x-auto w-full">
             <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-blue-600">>
+                <thead class="bg-blue-600">
                     <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">#</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">Lecturer
+                        <th class="px-6 py-5 text-left text-xs font-medium text-white uppercase tracking-wide">#</th>
+                        <th class="px-6 py-5 text-left text-xs font-medium text-white uppercase tracking-wide">Lecturer
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">Subject
+                        <th class="px-6 py-5 text-left text-xs font-medium text-white uppercase tracking-wide">Subject
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">
+                        <th class="px-6 py-5 text-left text-xs font-medium text-white uppercase tracking-wide">
                             Department</th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">Stage
+                        <th class="px-6 py-5 text-left text-xs font-medium text-white uppercase tracking-wide">Stage
                         </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wide">Actions
+                        <th class="px-6 py-5 text-left text-xs font-medium text-white uppercase tracking-wide">Actions
                         </th>
                     </tr>
                     </class=>
@@ -32,12 +32,12 @@
                     @foreach($modelinfos as $model)
 
                     <tr class="{{ $count % 2 == 0 ? 'bg-blue-200' : 'bg-white' }}">
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $count++ }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $model->user->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $model->subject->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $model->stage->department->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{ $model->stage->name }}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-6 whitespace-nowrap">{{ $count++ }}</td>
+                        <td class="px-6 py-6 whitespace-nowrap">{{ $model->user->name }}</td>
+                        <td class="px-6 py-6 whitespace-nowrap">{{ $model->subject->name }}</td>
+                        <td class="px-6 py-6 whitespace-nowrap">{{ $model->stage->department->name }}</td>
+                        <td class="px-6 py-6 whitespace-nowrap">{{ $model->stage->name }}</td>
+                        <td class="px-6 py-6 whitespace-nowrap">
                             <div class="flex items-center space-x-4">
                                 <!-- Edit button -->
                                 <a href="{{ route('model.edit', $model->id) }}"
