@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="flex items-center justify-center  bg-gray-100">
         <div class="bg-white p-6 rounded-lg shadow-md w-full ">
-            <h1 class="text-2xl font-bold mb-43 text-center mb-12 text-blue-600">Create New Module Information</h1>
+            <h1 class="text-2xl font-bold mb-43 text-center mb-12 text-blue-600">Edit Module Information</h1>
 
             <form action="{!! route('model.update',$model->id) !!}" method="POST" class="flex flex-wrap">
                 @csrf
@@ -192,7 +192,8 @@
                     <select name="stage_id" id="stage_id"
                         class="border border-blue-200 rounded-lg py-2 px-3 w-full focus:outline-none focus:border-blue-500">
                         @foreach($stages as $stage)
-                        <option {!! $model->stage_id == $stage->id ?"selected" :'' !!} value="{{ $stage->id }}">{{ $stage->department->name ." " . $stage->name }}</option>
+                        <option {!! $model->stage_id == $stage->id ?"selected" :'' !!} value="{{ $stage->id }}">{{
+                            $stage->department->name ." " . $stage->name }}</option>
                         @endforeach
                     </select>
                     @error('stage_id')
@@ -203,11 +204,11 @@
 
 
                 <div class="mb-4 w-full px-2 flex justify-center">
-    <!-- Add submit button -->
-    <button type="submit"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">Create
-        Module Information</button>
-</div>
+                    <!-- Add submit button -->
+                    <button type="submit"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">Create
+                        Module Information</button>
+                </div>
             </form>
         </div>
     </div>
