@@ -205,7 +205,7 @@
                 <div class="mb-4 w-full px-2 flex justify-center">
     <!-- Add submit button -->
     <button type="submit"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">Create
+        class="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline">Edit
         Module Information</button>
 </div>
             </form>
