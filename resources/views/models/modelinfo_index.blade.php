@@ -1,5 +1,5 @@
 <x-app-layout>
-    @if(auth()->user()->role!==0)
+    @if(auth()->user()->role===1)
     <div class=" mt-6 flex justify-center">
 
         <x-add-model-button></x-add-model-button>
